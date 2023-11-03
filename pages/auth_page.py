@@ -1,8 +1,8 @@
 import time
-
 from .base_page import BasePage
 from .locators import AuthLocators
 from time import sleep
+from selenium import webdriver
 import os
 
 
@@ -25,4 +25,3 @@ class AuthPage(BasePage):
 
     def btn_click(self):
         self.btn.click()
-        

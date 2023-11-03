@@ -12,7 +12,8 @@ from urllib.parse import urlparse
 
 
 class BasePage(object):
-    def __init__(self, driver, url, timeout=10):
+
+    def __init__(self, url, driver, timeout=10):
         self.driver = driver
         self.url = url
         self.driver.implicitly_wait(timeout)
@@ -20,4 +21,3 @@ class BasePage(object):
     def get_relative_link(self):
         url = urlparse(self.url.driver.current_url)
         return url.path
-
