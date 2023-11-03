@@ -1,0 +1,23 @@
+import pytest
+from datetime import time
+from selenium import webdriver
+from settings import email, password
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+import os.path
+import random
+from urllib.parse import urlparse
+
+
+class BasePage(object):
+    def __init__(self, driver, url, timeout=10):
+        self.driver = driver
+        self.url = url
+        self.driver.implicitly_wait(timeout)
+
+    def get_relative_link(self):
+        url = urlparse(self.url.driver.current_url)
+        return url.path
+
