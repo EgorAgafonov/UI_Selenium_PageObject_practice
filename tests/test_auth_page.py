@@ -2,6 +2,7 @@ import pytest
 
 from pages.auth_page import AuthPage
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 import selenium
 from settings import *
 import time
@@ -12,9 +13,9 @@ driver = webdriver.Chrome()
 def test_auth_page():
 
     page = AuthPage(driver)
+    page.enter_email(invalid_email)
+    page.enter_pass(invalid_password)
     time.sleep(2)
-    page.enter_email(email)
-    page.enter_pass(password)
     page.btn_click()
 
-    # assert page.get_relative_link() == "/all_pets"
+    assert page.get_relative_link() == "/all_pets"
