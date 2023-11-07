@@ -17,7 +17,7 @@ class TestPetFriendsPages:
         page.btn_click()
         time.sleep(1)
 
-        page = MyPetsPage(driver)
+        page = MyPetsPage(driver, timeout=10)
         page.add_pet_btn_click()
         page.enter_photo(photo=photo_1_jpg)
         time.sleep(2)

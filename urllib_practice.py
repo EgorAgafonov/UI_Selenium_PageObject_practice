@@ -13,9 +13,21 @@ import os
 # print(parsed_url)
 
 
-driver = webdriver.Chrome()
-driver.get("https://petfriends.skillfactory.ru/login")
-time.sleep(1)
-url = driver.current_url
-url_path = str(urlparse(url).path)
-print(url_path)
+# driver = webdriver.Chrome()
+# driver.get("https://petfriends.skillfactory.ru/login")
+# time.sleep(1)
+# url = driver.current_url
+# url_path = str(urlparse(url).path)
+# print(url_path)
+
+
+def get_relative_link():
+    driver = webdriver.Chrome()
+    driver.get("https://petfriends.skillfactory.ru/login")
+    time.sleep(1)
+    url = driver.current_url
+    url_path = str(urlparse(url).path)
+    return url_path
+
+
+print(get_relative_link())

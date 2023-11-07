@@ -9,7 +9,7 @@ import os
 
 
 class MyPetsPage(BasePage):
-    def __init__(self, driver, timeout=10):
+    def __init__(self, driver, timeout):
         super().__init__(driver, timeout)
         url = os.getenv("MY_PETS_URL") or "https://petfriends.skillfactory.ru/my_pets"
         driver.get(url)
