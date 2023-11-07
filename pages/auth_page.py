@@ -1,7 +1,7 @@
 import time
 from .base_page import BasePage
 from .locators import AuthLocators
-from time import sleep
+
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 import os
