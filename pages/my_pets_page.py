@@ -12,7 +12,7 @@ class MyPetsPage(BasePage):
         super().__init__(driver, timeout)
         url = os.getenv("MY_PETS_URL") or "https://petfriends.skillfactory.ru/my_pets"
         driver.get(url)
-        self.new_pet_btn = driver.find_element(*AuthLocators.MY_PETS_NEW_PET_BTN)
+        self.add_pet_btn = driver.find_element(*AuthLocators.MY_PETS_NEW_PET_BTN)
         self.submit_pet_btn = driver.find_element(*AuthLocators.MY_PETS_SUBMIT_PET_BTN)
         self.photo = driver.find_element(*AuthLocators.MY_PETS_PHOTO)
         self.name = driver.find_element(*AuthLocators.MY_PETS_NAME)
@@ -20,6 +20,21 @@ class MyPetsPage(BasePage):
         self.age = driver.find_element(*AuthLocators.MY_PETS_AGE)
 
     def enter_photo(self, photo):
-        self.photo.self.email.send_keys(photo)
+        self.photo.send_keys(photo)
+
+    def enter_name(self, value):
+        self.name.send_keys(value)
+
+    def enter_breed(self, value):
+        self.breed.send_keys(value)
+
+    def enter_age(self, value):
+        self.age.send_keys(value)
+
+    def add_pet_btn_click(self):
+        self.add_pet_btn.click()
+
+    def submit_pet_btn(self):
+        self.submit_pet_btn.click()
 
 
