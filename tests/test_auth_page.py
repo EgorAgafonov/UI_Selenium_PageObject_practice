@@ -7,12 +7,16 @@ import time
 driver = webdriver.Chrome()
 
 
-def test_auth_page():
+class TestPetFriendsPages:
 
-    page = AuthPage(driver)
-    page.enter_email(email)
-    page.enter_pass(password)
-    time.sleep(1)
-    page.btn_click()
+    def test_auth_page(self):
 
-    # assert page.get_relative_link() == "/all_pets"
+        page = AuthPage(driver)
+        page.enter_email(email)
+        page.enter_pass(password)
+        time.sleep(1)
+        page.btn_click()
+
+        # assert page.get_relative_link() == "/all_pets"
+
+
