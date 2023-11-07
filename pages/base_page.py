@@ -19,7 +19,9 @@ class BasePage(object):
 
     def get_relative_link(self):
         url = self.driver.current_url
-        parsed_url = urlparse(url)
-        return parsed_url.path
+        parsed_url = str(urlparse(url).path)
+        return parsed_url
+
+
 
 
