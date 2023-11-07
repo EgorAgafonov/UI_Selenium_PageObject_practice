@@ -13,8 +13,8 @@ driver = webdriver.Chrome()
 def test_auth_page():
 
     page = AuthPage(driver)
-    page.enter_email(invalid_email)
-    page.enter_pass(invalid_password)
+    page.enter_email(email)
+    page.enter_pass(password)
     time.sleep(2)
     page.btn_click()
 
