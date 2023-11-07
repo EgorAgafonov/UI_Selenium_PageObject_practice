@@ -10,4 +10,4 @@ class AuthLocators:
     MY_PETS_NAME = (By.ID, "name")
     MY_PETS_BREED = (By.ID, "animal_type")
     MY_PETS_AGE = (By.ID, "age")
-    MY_PETS_SUBMIT_PET_BTN = (By.CSS_SELECTOR, "button[onclick='add_pet();']")
+    MY_PETS_SUBMIT_PET_BTN = (By.XPATH, "//button[@onclick='add_pet();']")

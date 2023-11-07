@@ -34,7 +34,7 @@ class MyPetsPage(BasePage):
     def add_pet_btn_click(self):
         self.add_pet_btn.click()
 
-    def submit_pet_btn(self):
+    def submit_pet_btn_click(self):
         self.submit_pet_btn.click()
 
 
