@@ -9,6 +9,7 @@ from selenium.webdriver.chrome.options import Options
 import os.path
 import random
 from urllib.parse import urlparse
+import urllib.request
 
 
 class BasePage(object):
@@ -19,8 +20,8 @@ class BasePage(object):
 
     def get_relative_link(self):
         url = self.driver.current_url
-        parsed_url = str(urlparse(url).path)
-        return parsed_url
+        url_path = str(urlparse(url).path)
+        return url_path
 
 
 
