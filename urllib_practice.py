@@ -6,8 +6,12 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from urllib.parse import urlparse
 import urllib.request
+import colorama
+from colorama import Fore, Back, Style
 import os
 
 url = "https://petfriends.skillfactory.ru/my_pets"
 parsed_url = urlparse(url).path
-print(parsed_url)
+colorama.init()
+print(Style.DIM + Fore.BLACK + Back.BLUE + f"Эндпоинт(path) url-адреса: {parsed_url}")
+

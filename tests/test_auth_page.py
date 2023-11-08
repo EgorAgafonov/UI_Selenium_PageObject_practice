@@ -17,6 +17,6 @@ class TestPetFriendsPages:
         time.sleep(1)
         page.btn_click()
 
-        # assert page.get_relative_link() == "/all_pets"
+        assert page.get_relative_link() == "/all_pets"
 
 
