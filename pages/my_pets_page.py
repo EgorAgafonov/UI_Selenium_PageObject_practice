@@ -1,6 +1,6 @@
 import time
 from .base_page import BasePage
-from .locators import AuthLocators
+from .locators import AuthLocators, MyPetsLocators
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -13,12 +13,12 @@ class MyPetsPage(BasePage):
         super().__init__(driver, timeout)
         url = os.getenv("MY_PETS_URL") or "https://petfriends.skillfactory.ru/my_pets"
         driver.get(url)
-        self.add_pet_btn = driver.find_element(*AuthLocators.MY_PETS_NEW_PET_BTN)
-        self.submit_pet_btn = driver.find_element(*AuthLocators.MY_PETS_SUBMIT_PET_BTN)
-        self.photo = driver.find_element(*AuthLocators.MY_PETS_PHOTO)
-        self.name = driver.find_element(*AuthLocators.MY_PETS_NAME)
-        self.breed = driver.find_element(*AuthLocators.MY_PETS_BREED)
-        self.age = driver.find_element(*AuthLocators.MY_PETS_AGE)
+        self.add_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_NEW_PET_BTN)
+        self.submit_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_SUBMIT_PET_BTN)
+        self.photo = driver.find_element(*MyPetsLocators.MY_PETS_PHOTO)
+        self.name = driver.find_element(*MyPetsLocators.MY_PETS_NAME)
+        self.breed = driver.find_element(*MyPetsLocators.MY_PETS_BREED)
+        self.age = driver.find_element(*MyPetsLocators.MY_PETS_AGE)
 
     def enter_photo(self, photo):
         self.photo.send_keys(photo)

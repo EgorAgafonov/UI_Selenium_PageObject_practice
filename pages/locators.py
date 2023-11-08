@@ -5,6 +5,9 @@ class AuthLocators:
     AUTH_EMAIL = (By.ID, "email")
     AUTH_PASS = (By.ID, "pass")
     AUTH_BTN = (By.CLASS_NAME, "btn-success")
+
+
+class MyPetsLocators:
     MY_PETS_NEW_PET_BTN = (By.CSS_SELECTOR, "button.btn.btn-outline-success")
     MY_PETS_PHOTO = (By.ID, "photo")
     MY_PETS_NAME = (By.ID, "name")
