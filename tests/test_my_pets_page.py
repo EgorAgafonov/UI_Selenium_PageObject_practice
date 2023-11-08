@@ -12,12 +12,8 @@ colorama.init()
 
 
 class TestPetFriendsPages:
-    @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
-    def test_my_pets_page(self, photo):
-        page = AuthPage(driver)
-        page.enter_email(email)
-        page.enter_pass(password)
-        page.btn_click()
+    # @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
+    def test_my_pets_page(self, photo=photo_1_jpg):
 
         page = MyPetsPage(driver)
         page.add_pet_btn_click()

@@ -12,7 +12,7 @@ import pickle
 class MyPetsPage(BasePage):
     def __init__(self, driver, timeout=5):
         super().__init__(driver, timeout)
-        with open('my_cookies.txt', 'rb') as cookiesfile:
+        with open("my_cookies.txt", "rb") as cookiesfile:
             cookies = pickle.load(cookiesfile)
             for cookie in cookies:
                 driver.add_cookie(cookie)
@@ -43,5 +43,3 @@ class MyPetsPage(BasePage):
 
     def submit_pet_btn_click(self):
         self.submit_pet_btn.click()
-
-
