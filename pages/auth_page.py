@@ -8,7 +8,7 @@ import os
 
 class AuthPage(BasePage):
 
-    def __init__(self, driver, timeout=10):
+    def __init__(self, driver, timeout=5):
         super().__init__(driver, timeout)
         url = os.getenv("LOGIN_URL") or "https://petfriends.skillfactory.ru/login"
         driver.get(url)

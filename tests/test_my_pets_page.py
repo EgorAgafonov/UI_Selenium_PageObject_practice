@@ -15,16 +15,12 @@ class TestPetFriendsPages:
         page.enter_email(email)
         page.enter_pass(password)
         page.btn_click()
-        time.sleep(1)
 
-        page = MyPetsPage(driver, timeout=10)
+        page = MyPetsPage(driver)
         page.add_pet_btn_click()
         page.enter_photo(photo=photo_1_jpg)
-        time.sleep(2)
         page.enter_name("Boris")
         page.enter_breed("ginger")
         page.enter_age(17)
-        time.sleep(2)
         page.submit_pet_btn_click()
-        time.sleep(2)
         assert page.get_relative_link() == "/my_pets"
