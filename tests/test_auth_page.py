@@ -3,6 +3,7 @@ from pages.auth_page import AuthPage
 from selenium import webdriver
 from settings import *
 import time
+from selenium.webdriver.chrome.options import Options
 
 driver = webdriver.Chrome()
 
@@ -10,12 +11,12 @@ driver = webdriver.Chrome()
 class TestPetFriendsPages:
 
     def test_auth_page(self):
-
         page = AuthPage(driver)
         page.enter_email(email)
         page.enter_pass(password)
         time.sleep(1)
         page.btn_click()
+        driver.add_cookie()
 
         assert page.get_relative_link() == "/all_pets"
 

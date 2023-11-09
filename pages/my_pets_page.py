@@ -1,22 +1,17 @@
 import time
 from .base_page import BasePage
 from .locators import AuthLocators, MyPetsLocators
+from settings import pf_cookies
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from urllib.parse import urlparse
 import os
-import pickle
 
 
 class MyPetsPage(BasePage):
     def __init__(self, driver, timeout=5):
         super().__init__(driver, timeout)
-        with open("my_cookies.txt", "rb") as cookiesfile:
-            cookies = pickle.load(cookiesfile)
-            for cookie in cookies:
-                driver.add_cookie(cookie)
-        driver.refresh()
         url = os.getenv("MY_PETS_URL") or "https://petfriends.skillfactory.ru/my_pets"
         driver.get(url)
         self.add_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_NEW_PET_BTN)
