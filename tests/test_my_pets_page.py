@@ -22,6 +22,7 @@ class TestPetFriendsPages:
         page.enter_breed("ginger")
         page.enter_age(17)
         page.submit_pet_btn_click()
+        time.sleep(1)
 
         if page.get_relative_link() != "/my_pets":
             print(Style.DIM + Fore.RED + f"\nКарточки питомцев не созданы!")
