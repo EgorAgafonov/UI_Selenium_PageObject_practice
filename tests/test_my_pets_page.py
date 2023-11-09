@@ -1,4 +1,6 @@
 import pytest
+
+from conftest import driver
 from pages.my_pets_page import MyPetsPage
 from settings import *
 from colorama import Fore, Style

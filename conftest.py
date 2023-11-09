@@ -3,9 +3,20 @@ from selenium import webdriver
 from settings import *
 import colorama
 from selenium.webdriver.chrome.options import Options
+from datetime import *
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope='function', autouse=True)
+def duration_of_test(request):
+    start_time = datetime.now()
+    print(f'\nНачало выполнения тестовой функции: {start_time} сек.')
+    yield
+    end_time = datetime.now()
+    print(f'Окончание выполнения тестовой функции: {end_time} сек.')
+    print(f"ВСЕГО продолжительность теста {request.function.__name__}: {end_time - start_time} сек.\n")
+
+
+@pytest.fixture()
 def driver():
     """Pytest-фикстура(декоратор) для запуска авто-тестов с определенными в ней настройками (setup). Инициализирует
     настройки запуска браузера Chrome через веб-драйвер Selenium, а также выполняет авторизацию на сайте

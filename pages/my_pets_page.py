@@ -1,11 +1,5 @@
-import time
 from .base_page import BasePage
-from .locators import AuthLocators, MyPetsLocators
-from time import sleep
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from urllib.parse import urlparse
-from settings import cookie_value
+from .locators import MyPetsLocators
 import os
 
 
