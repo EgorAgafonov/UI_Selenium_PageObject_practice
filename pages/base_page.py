@@ -12,3 +12,7 @@ class BasePage(object):
     def get_relative_link(self):
         url = urlparse(self.driver.current_url)
         return url.path
+
+    def refresh_page(self):
+        self.driver.refresh()
+
