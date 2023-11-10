@@ -17,7 +17,7 @@ class TestPetFriendsPage_Create:
         page.enter_breed("ginger")
         page.enter_age(17)
         page.submit_pet_btn_click()
-        time.sleep(2)
+        page.refresh_page()
 
         if page.get_relative_link() != "/my_pets":
             print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
@@ -29,15 +29,13 @@ class TestPetFriendsPage_Create:
 class TestPetFriendsPage_Delete:
     def test_delete_pet_positive(self, driver):
         page = MyPetsPage(driver)
-        time.sleep(2)
-        cards_before_delete = page.get_pets_quantity
-        time.sleep(2)
+        time.sleep(3)
+        cards_before_delete = len(page.get_pets_quantity)
+        time.sleep(3)
         page.delete_pet_btn_click()
-        time.sleep(2)
         page.refresh_page()
-        time.sleep(2)
-        cards_after_delete = page.get_pets_quantity
-        time.sleep(2)
+        time.sleep(3)
+        cards_after_delete = len(page.get_pets_quantity)
         # assert cards_before_delete != cards_after_delete
         print(cards_before_delete)
         print(cards_after_delete)

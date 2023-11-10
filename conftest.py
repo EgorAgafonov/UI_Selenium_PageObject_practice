@@ -3,7 +3,7 @@ from selenium import webdriver
 from settings import *
 import colorama
 from selenium.webdriver.chrome.options import Options
-from datetime import *
+import datetime
 
 
 @pytest.fixture(scope='function', autouse=True)
