@@ -1,4 +1,4 @@
-from urllib.parse import urlparse
+from selenium.webdriver.common.by import By
 from selenium import webdriver
 import colorama
 import os
@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from settings import cookie_value
 import time
+from urllib.parse import urlparse
 
 
 class BasePage(object):

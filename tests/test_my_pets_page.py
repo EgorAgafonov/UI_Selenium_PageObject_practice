@@ -30,12 +30,12 @@ class TestPetFriendsPage_Delete:
     def test_delete_pet_positive(self, driver):
         page = MyPetsPage(driver)
         time.sleep(3)
-        cards_before_delete = len(page.get_pets_quantity)
+        cards_before_delete = page.get_pets_quantity
         time.sleep(3)
         page.delete_pet_btn_click()
         page.refresh_page()
         time.sleep(3)
-        cards_after_delete = len(page.get_pets_quantity)
+        cards_after_delete = page.get_pets_quantity
         # assert cards_before_delete != cards_after_delete
         print(cards_before_delete)
         print(cards_after_delete)

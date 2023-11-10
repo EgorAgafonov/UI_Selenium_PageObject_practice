@@ -1,9 +1,8 @@
 import pytest
 from selenium import webdriver
 from settings import *
-import colorama
 from selenium.webdriver.chrome.options import Options
-import datetime
+from datetime import *
 
 
 @pytest.fixture(scope='function', autouse=True)
@@ -16,7 +15,7 @@ def duration_of_test(request):
     print(f"ВСЕГО продолжительность теста {request.function.__name__}: {end_time - start_time} сек.\n")
 
 
-@pytest.fixture()
+@pytest.fixture(scope="function")
 def driver():
     """Pytest-фикстура(декоратор) для запуска UI-тестов, спроектированных с помощью фреймворка Selenium. Определяет
     setup-настройки перед началом выполнения тестовой функции. Инициализирует настройки запуска браузера Chrome, создает
@@ -33,6 +32,5 @@ def driver():
     url = os.getenv("LOGIN_URL") or "https://petfriends.skillfactory.ru/login"
     driver.get(url)
     driver.add_cookie({"name": "session", "value": cookie_value})
-    colorama.init()
     yield driver
     driver.quit()
