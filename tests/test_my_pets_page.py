@@ -1,8 +1,7 @@
 import pytest
 from pages.my_pets_page import MyPetsPage
-from settings import photo_1_jpg, photo_2_jpg
+from tests.settings import *
 from colorama import Fore, Style
-import time
 
 
 class TestMyPetsPageCreate:
@@ -29,7 +28,7 @@ class TestMyPetsPageCreate:
         page = MyPetsPage(driver)
         page.add_pet_btn_click()
         page.enter_photo(photo)
-        page.enter_name("Cat Streetwolker")
+        page.enter_name("Cat Streetwalker")
         page.enter_breed("jedi master")
         page.enter_age(1000)
         page.submit_pet_btn_click()

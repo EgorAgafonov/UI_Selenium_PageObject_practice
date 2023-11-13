@@ -1,9 +1,8 @@
 from selenium import webdriver
-import colorama
 import os
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from settings import cookie_value
+from tests.settings import cookie_value
 import time
 
 # url = "https://petfriends.skillfactory.ru/my_pets"

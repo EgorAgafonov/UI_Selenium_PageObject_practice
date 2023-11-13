@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
-from settings import cookie_value
-from selenium.webdriver.chrome.options import Options
+from tests.settings import *
+from selenium.webdriver.chrome.options import *
 from datetime import *
 import os
 

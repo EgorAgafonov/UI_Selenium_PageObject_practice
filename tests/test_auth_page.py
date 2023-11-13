@@ -1,9 +1,7 @@
-import pytest
 from pages.auth_page import AuthPage
 from selenium import webdriver
-from settings import *
+from tests.settings import *
 import time
-from selenium.webdriver.chrome.options import Options
 
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
