@@ -1,12 +1,28 @@
 import pytest
 from pages.my_pets_page import MyPetsPage
-from conftest import *
-from settings import *
+from conftest import driver, photo_1_jpg, photo_2_jpg
 from colorama import Fore, Style
 import time
 
 
 class TestMyPetsPageCreate:
+    @pytest.mark.one
+    def test_create_pet_simple_positive(self, driver):
+
+        page = MyPetsPage(driver)
+        page.add_pet_btn_click()
+        page.enter_name("Kristi")
+        page.enter_breed("abyssinian")
+        page.enter_age(4)
+        page.submit_pet_btn_click()
+        page.refresh_page()
+
+        if page.get_relative_link() != "/my_pets":
+            print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
+        else:
+            assert page.get_relative_link() == "/my_pets"
+            print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
+
     @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
     def test_create_pet_wth_photo_positive(self, driver, photo):
 

@@ -1,17 +1,10 @@
 from .base_page import BasePage
 from .locators import MyPetsLocators
-import os
-from selenium.webdriver.common.by import By
-from selenium import webdriver
-import colorama
-from selenium.webdriver.chrome.options import Options
-
-from settings import cookie_value
-import time
 
 
 class MyPetsPage(BasePage):
-    """"""
+    """Класс с атрибутами и методами для управления элементами страницы https://petfriends.skillfactory.ru/my_pets
+     в рамках проектирования UI-тестов по паттерну Page Object Model."""
     def __init__(self, driver, timeout=15):
         super().__init__(driver, timeout)
 

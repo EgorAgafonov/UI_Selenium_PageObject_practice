@@ -15,7 +15,7 @@ def duration_of_test(request):
     print(f"ВСЕГО продолжительность теста {request.function.__name__}: {end_time - start_time} сек.\n")
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="function")
 def driver():
     """Pytest-фикстура(декоратор) для запуска UI-тестов, спроектированных с помощью фреймворка Selenium. Определяет
     setup-настройки перед началом выполнения тестовой функции. Инициализирует настройки запуска браузера Chrome, создает
