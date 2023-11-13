@@ -35,7 +35,8 @@ class TestMyPetsPageDelete:
         page.refresh_page()
         cards_after_delete = page.get_pets_quantity - 1
 
-        assert cards_before_delete != cards_after_delete, "Ошибка"
+        assert cards_before_delete != cards_after_delete, "Ошибка! Проверьте наличие хотя бы 1 карточки питомца в" \
+                                                          "профиле и/или корректность пути локатора элемента."
         print(f"\n{cards_before_delete} - {cards_after_delete}")
 
 
