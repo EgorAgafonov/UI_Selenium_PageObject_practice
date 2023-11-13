@@ -1,6 +1,6 @@
 import pytest
 from selenium import webdriver
-from tests.settings import *
+from settings import *
 from selenium.webdriver.chrome.options import *
 from datetime import *
 import os

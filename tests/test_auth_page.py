@@ -1,6 +1,6 @@
 from pages.auth_page import AuthPage
 from selenium import webdriver
-from tests.settings import *
+from settings import *
 import time
 
 options = webdriver.ChromeOptions()

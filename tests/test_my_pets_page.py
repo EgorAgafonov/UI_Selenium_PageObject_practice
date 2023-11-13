@@ -1,6 +1,6 @@
 import pytest
 from pages.my_pets_page import MyPetsPage
-from tests.settings import *
+from settings import *
 from colorama import Fore, Style
 
 
