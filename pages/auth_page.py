@@ -1,6 +1,6 @@
 import os
-from .base_page import BasePage
-from .locators import AuthLocators
+from pages.base_page import BasePage
+from pages.locators import AuthLocators
 
 
 class AuthPage(BasePage):

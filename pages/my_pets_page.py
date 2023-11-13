@@ -1,5 +1,5 @@
-from base_page import BasePage
-from locators import MyPetsLocators
+from pages.base_page import BasePage
+from pages.locators import MyPetsLocators
 
 
 class MyPetsPage(BasePage):

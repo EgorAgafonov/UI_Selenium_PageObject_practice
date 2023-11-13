@@ -2,6 +2,7 @@ import pytest
 from pages.my_pets_page import MyPetsPage
 from settings import *
 from colorama import Fore, Style
+import time
 
 
 class TestMyPetsPageCreate:
