@@ -5,16 +5,20 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 import colorama
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
+
 from settings import cookie_value
 import time
 
 
 class MyPetsPage(BasePage):
+    """"""
     def __init__(self, driver, timeout=5):
         super().__init__(driver, timeout)
-        url = os.getenv("MY_PETS_URL") or "https://petfriends.skillfactory.ru/my_pets"
-        driver.get(url)
+
+        # url = os.getenv("MY_PETS_URL") or "https://petfriends.skillfactory.ru/my_pets"
+        # driver.get(url)
+        # driver.add_cookie({"name": "session", "value": cookie_value})
+
         self.add_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_NEW_PET_BTN)
         self.submit_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_SUBMIT_PET_BTN)
         self.delete_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_DELETE_PET_BTN)

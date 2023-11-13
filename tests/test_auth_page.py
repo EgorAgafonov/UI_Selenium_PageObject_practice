@@ -5,7 +5,9 @@ from settings import *
 import time
 from selenium.webdriver.chrome.options import Options
 
-driver = webdriver.Chrome()
+options = webdriver.ChromeOptions()
+options.add_argument("--start-maximized")
+driver = webdriver.Chrome(options=options)
 
 
 class TestPetFriendsPages:
@@ -16,7 +18,8 @@ class TestPetFriendsPages:
         page.enter_pass(password)
         time.sleep(1)
         page.btn_click()
-        driver.add_cookie()
+        time.sleep(1)
+        driver.get_cookies()
 
         assert page.get_relative_link() == "/all_pets"
 
