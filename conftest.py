@@ -1,8 +1,9 @@
 import pytest
 from selenium import webdriver
-from settings import *
+from settings import cookie_value
 from selenium.webdriver.chrome.options import Options
 from datetime import *
+import os
 
 
 @pytest.fixture(scope='function', autouse=True)

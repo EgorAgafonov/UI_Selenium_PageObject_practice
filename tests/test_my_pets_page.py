@@ -1,6 +1,6 @@
 import pytest
 from pages.my_pets_page import MyPetsPage
-from conftest import driver, photo_1_jpg, photo_2_jpg
+from settings import photo_1_jpg, photo_2_jpg
 from colorama import Fore, Style
 import time
 
