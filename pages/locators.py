@@ -15,7 +15,7 @@ class AuthLocators:
 
 
 class MyPetsLocators:
-    MY_PETS_NEW_PET_BTN = (By.XPATH, "//button[@class='btn btn-outline-success']")
+    MY_PETS_NEW_PET_BTN = (By.CSS_SELECTOR, "html > body > div > div > div:nth-of-type(2) > div > button")
     MY_PETS_SUBMIT_PET_BTN = (By.XPATH, "//button[@onclick='add_pet();']")
     MY_PETS_DELETE_PET_BTN = (By.CSS_SELECTOR, "#all_my_pets > table > tbody > tr:nth-child(1) > td.smart_cell > a > "
                                                "div")

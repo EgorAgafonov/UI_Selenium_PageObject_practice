@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from datetime import *
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def duration_of_test(request):
     start_time = datetime.now()
     print(f'\nНачало выполнения тестовой функции: {start_time} сек.')
@@ -15,7 +15,7 @@ def duration_of_test(request):
     print(f"ВСЕГО продолжительность теста {request.function.__name__}: {end_time - start_time} сек.\n")
 
 
-@pytest.fixture()
+@pytest.fixture(scope="function", autouse=True)
 def driver():
     """Pytest-фикстура(декоратор) для запуска UI-тестов, спроектированных с помощью фреймворка Selenium. Определяет
     setup-настройки перед началом выполнения тестовой функции. Инициализирует настройки запуска браузера Chrome, создает
