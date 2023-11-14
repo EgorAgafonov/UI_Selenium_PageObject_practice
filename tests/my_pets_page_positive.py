@@ -27,7 +27,7 @@ class TestMyPetsPageCreate:
     def test_create_pet_wth_photo_positive(self, driver, photo):
         """Позитивный тест проверки создания карточки питомца с фото. Валидация теста выполнена успешно в случае, если
          после ввода всех необходимых данных в форму карточки, пользователь остается на страницы с эндпоинтом
-         "/my_pets", а карточка отображается в стеке карточек питомцев пользователя со всеми указанными данными."""
+         "/my_pets", а карточка отображается в стеке питомцев пользователя со всеми указанными данными."""
 
         page = MyPetsPage(driver)
         page.add_pet_btn_click()
@@ -44,8 +44,6 @@ class TestMyPetsPageCreate:
             assert page.get_relative_link() == "/my_pets"
             print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
-
-class TestMyPetsPageDelete:
     def test_delete_pet_positive(self, driver):
         """Позитивный тест проверки удаления пользователем ранее созданной им карточки питомца. Валидация теста
         выполнена успешно в случае, если после нажатия на элемент "Удалить питомца" в карточке питомца, указанная
@@ -58,7 +56,7 @@ class TestMyPetsPageDelete:
         page.refresh_page()
         cards_after_delete = page.get_pets_quantity - 1
 
-        assert cards_before_delete != cards_after_delete, "Ошибка! Проверьте наличие хотя бы 1 карточки питомца в" \
+        assert cards_before_delete != cards_after_delete, "Ошибка! Проверьте наличие хотя бы 1-ой карточки питомца в" \
                                                           "профиле и/или корректность пути локатора элемента."
         print(f"\n{cards_before_delete} - {cards_after_delete}")
 
