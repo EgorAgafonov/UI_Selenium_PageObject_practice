@@ -21,6 +21,7 @@ class TestMyPetsPageCreate:
             print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
         else:
             assert page.get_relative_link() == "/my_pets"
+            time.sleep(2)
             page.make_screenshot()
             print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 

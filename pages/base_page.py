@@ -4,7 +4,9 @@ from colorama import Style, Fore
 
 
 class BasePage(object):
-    
+    """Базовый(родительский) класс веб-страницы для всех последующих страниц различных веб-ресрусов. Содержит основные
+    методы работы со страницами"""
+
     driver = None
 
     def __init__(self, driver, url, timeout=15):

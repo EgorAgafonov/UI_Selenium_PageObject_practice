@@ -35,6 +35,5 @@ def driver():
     driver.add_cookie({"name": "session", "value": cookie_value})
     url = os.getenv("MY_PETS_URL") or "https://petfriends.skillfactory.ru/my_pets"
     driver.get(url)
-    driver.pa
     yield driver
     driver.quit()
