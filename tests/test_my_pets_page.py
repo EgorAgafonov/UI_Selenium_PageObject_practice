@@ -25,6 +25,9 @@ class TestMyPetsPageCreate:
 
     @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
     def test_create_pet_wth_photo_positive(self, driver, photo):
+        """Позитивный тест проверки создания карточки питомца с фото. Валидация теста выполнена успешно в случае, если
+         после ввода всех необходимых данных в форму карточки, пользователь остается на страницы с эндпоинтом
+         "/my_pets", а карточка отображается в стеке карточек питомцев пользователя со всеми указанными данными."""
 
         page = MyPetsPage(driver)
         page.add_pet_btn_click()
