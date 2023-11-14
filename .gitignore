@@ -2,3 +2,8 @@
 /venv/
 /my_cookies.txt
 /my_cookies.pkl
+__pycache__
+*__pycache__*
+.idea
+*.idea*
+*.pyc
