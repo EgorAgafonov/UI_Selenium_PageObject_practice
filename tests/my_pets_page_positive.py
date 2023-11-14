@@ -21,6 +21,7 @@ class TestMyPetsPageCreate:
             print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
         else:
             assert page.get_relative_link() == "/my_pets"
+            page.make_screenshot()
             print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
