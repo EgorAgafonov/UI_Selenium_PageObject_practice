@@ -5,6 +5,7 @@ from pages.locators import MyPetsLocators
 class MyPetsPage(BasePage):
     """Класс с атрибутами и методами для управления элементами страницы https://petfriends.skillfactory.ru/my_pets
      в рамках проектирования UI-тестов по паттерну Page Object Model."""
+
     def __init__(self, driver, timeout=15):
         super().__init__(driver, timeout)
 
