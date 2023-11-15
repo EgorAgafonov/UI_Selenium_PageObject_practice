@@ -40,8 +40,8 @@ def driver():
 @pytest.fixture()
 def auth_driver():
     """Pytest-фикстура(декоратор) для запуска UI-тестов проверки модуля авторизации пользователя на сайте
-    www.petfriends.skillfactory.ru.Аналогична setup-фикстуре driver (см. выше), за исключением возможности авторизации
-     по cookie-файлу соответственно."""
+    www.petfriends.skillfactory.ru.Аналогична setup-фикстуре driver (см. выше), за исключением отсутствия возможности
+    предварительной авторизации соответственно."""
 
     options = Options()
     options.add_argument("--start-maximized")
