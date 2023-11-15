@@ -46,7 +46,5 @@ def auth_driver():
     options = Options()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
-    url = os.getenv("LOGIN_URL") or "https://petfriends.skillfactory.ru/login"
-    driver.get(url)
     yield driver
     driver.quit()
