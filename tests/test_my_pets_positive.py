@@ -9,7 +9,9 @@ class TestMyPetsPage:
     @pytest.mark.one
     @pytest.mark.create_simple
     def test_create_pet_simple_positive(self, driver):
-
+        """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае, если
+        после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets", а
+        карточка отображается в стеке питомцев пользователя со всеми переданными данными (без фото соответственно)."""
         page = MyPetsPage(driver)
         page.add_pet_btn_click()
         page.enter_name("Kristi")
