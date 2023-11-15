@@ -9,11 +9,11 @@ import os
 @pytest.fixture(scope='function', autouse=True)
 def duration_of_test(request):
     start_time = datetime.now()
-    print(f'\nНачало выполнения тестовой функции: {start_time} сек.')
+    print(f'\n1/3) Начало выполнения тестовой функции: {start_time} сек.')
     yield
     end_time = datetime.now()
-    print(f'Окончание выполнения тестовой функции: {end_time} сек.')
-    print(f"ВСЕГО продолжительность теста {request.function.__name__}: {end_time - start_time} сек.\n")
+    print(f'\n2/3) Окончание выполнения тестовой функции: {end_time} сек.')
+    print(f"\n3/3) ВСЕГО продолжительность теста {request.function.__name__}: {end_time - start_time} сек.\n")
 
 
 @pytest.fixture()
