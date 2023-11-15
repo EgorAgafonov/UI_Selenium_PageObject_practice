@@ -14,10 +14,8 @@ class TestPetFriendsPages:
         page = AuthPage(driver)
         page.enter_email(email)
         page.enter_pass(password)
-        time.sleep(1)
         page.btn_click()
-        time.sleep(1)
-        driver.get_cookies()
+        time.sleep(3)
 
         assert page.get_relative_link() == "/all_pets"
 

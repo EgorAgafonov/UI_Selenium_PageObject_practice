@@ -6,6 +6,7 @@ import time
 
 
 class TestMyPetsPage:
+    @pytest.mark.one
     @pytest.mark.create_simple
     def test_create_pet_simple_positive(self, driver):
 
@@ -25,6 +26,7 @@ class TestMyPetsPage:
             page.make_screenshot()
             print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
+    @pytest.mark.two
     @pytest.mark.create_wth_photo
     def test_create_pet_wth_photo_positive(self, driver):
         """Позитивный тест проверки создания карточки питомца с фото. Валидация теста выполнена успешно в случае, если
@@ -74,6 +76,7 @@ class TestMyPetsPage:
             assert page.get_relative_link() == "/my_pets"
             print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
+    @pytest.mark.three
     @pytest.mark.delete_pet
     def test_delete_pet_positive(self, driver):
         """Позитивный тест проверки удаления пользователем ранее созданной им карточки питомца. Валидация теста
@@ -89,7 +92,8 @@ class TestMyPetsPage:
 
         assert cards_before_delete != cards_after_delete, "Ошибка! Проверьте наличие хотя бы 1-ой карточки питомца в" \
                                                           "профиле и/или корректность пути локатора элемента."
-        print(f"\n{cards_before_delete} - {cards_after_delete}")
+        print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления:"
+              f"{cards_after_delete}")
 
 
 
