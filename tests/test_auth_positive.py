@@ -3,7 +3,7 @@ from settings import *
 import time
 
 
-class TestPetFriendsPages:
+class TestsAuthPagePositive:
     """Класс с коллекцией UI-тестов для проверки модуля авторизации пользователя на платформе
     petfriends.skillfactory.ru, спроектированных с использованием паттерна PageObjectModel."""
 
@@ -11,7 +11,7 @@ class TestPetFriendsPages:
         """Позитивный тест проверки авторизации пользователя на сайте. Валидация теста выполнена успешно в случае, если
         после ввода корректных адреса и пароля пользователя в форму авторизации, система авторизует пользователя на
         сайте и осуществляет его перевод на страницу path = "/all_pets"."""
-        
+
         page = AuthPage(auth_driver)
         page.enter_email(email)
         page.enter_pass(password)
