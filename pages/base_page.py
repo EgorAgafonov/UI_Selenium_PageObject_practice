@@ -57,6 +57,6 @@ class BasePage(object):
             source = self.driver.page_source
 
         except:
-            print(Style.DIM + Fore.RED + 'Can not get page source')
+            raise Exception(Style.DIM + Fore.RED + 'Can not get page source')
 
         return source
