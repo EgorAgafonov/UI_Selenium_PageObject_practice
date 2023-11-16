@@ -3,9 +3,7 @@ import os
 from random import randint
 
 
-def random_num(start=1, end=1000):
-    num = randint(start, end)
-    return str(num)
+
 
 
 def strings_generator(n):
@@ -30,6 +28,11 @@ def digits():
 
 def latin_chars():
     return 'abcdefghijklmnopqrstwxyz'
+
+
+def random_num(start=1, end=10000):
+    num = randint(start, end)
+    return str(num)
 
 
 screenshots_folder = os.path.abspath(f"C:\\Users\\agafo\\PycharmProjects\\pythonProject15_PageObjects_tests"

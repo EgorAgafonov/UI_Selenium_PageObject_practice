@@ -5,7 +5,7 @@ class AuthLocators:
     AUTH_EMAIL = (By.ID, "email")
     AUTH_PASS = (By.ID, "pass")
     AUTH_BTN = (By.CLASS_NAME, "btn-success")
-    AUTH_WARNING_MSG = (By.XPATH, "//div[@role='alert']")
+    AUTH_ALERT_MSG = (By.XPATH, "//div[@role='alert']")
 
 
 class MyPetsLocators:

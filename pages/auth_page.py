@@ -24,3 +24,7 @@ class AuthPage(BasePage):
 
     def btn_click(self):
         self.btn.click()
+
+    def check_allert_msg(self, driver):
+        msg = driver.find_element(*AuthLocators.AUTH_ALERT_MSG).text
+        return msg
