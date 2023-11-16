@@ -16,9 +16,7 @@ class TestsAuthPagePositive:
         page.enter_email(email)
         page.enter_pass(password)
         page.btn_click()
-        page_source = page.get_page_source()
 
         assert page.get_relative_link() == "/all_pets"
-        print(f"\n{page_source}")
 
 

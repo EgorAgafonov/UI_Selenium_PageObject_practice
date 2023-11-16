@@ -5,7 +5,7 @@ from colorama import Fore, Style
 import time
 
 
-class TestMyPetsPage:
+class TestMyPetsPagePositive:
     @pytest.mark.one
     @pytest.mark.create_simple
     def test_create_pet_simple_positive(self, driver):
