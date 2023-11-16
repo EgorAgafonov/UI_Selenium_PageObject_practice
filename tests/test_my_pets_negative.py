@@ -8,7 +8,7 @@ import time
 
 class TestMyPetsPageNegative:
 
-    # @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
+    @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
     @pytest.mark.create_pet_negative
     @pytest.mark.parametrize("photo", [photo_3_bmp, photo_4_gif], ids=["photo .bmp", "photo .gif"])
     @pytest.mark.parametrize("name", [digits(), special_chars()], ids=["name digits", "name special_chars"])
