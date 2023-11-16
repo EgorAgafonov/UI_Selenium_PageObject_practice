@@ -40,6 +40,8 @@ screenshots_folder = os.path.abspath(f"C:\\Users\\agafo\\PycharmProjects\\python
 
 photo_1_jpg = os.path.abspath("C:\\Users\\agafo\\PycharmProjects\\pythonProject15_PageObjects_tests\\photos\\1.jpg")
 photo_2_jpg = os.path.abspath("C:\\Users\\agafo\\PycharmProjects\\pythonProject15_PageObjects_tests\\photos\\2.jpg")
+photo_3_bmp = os.path.abspath("C:\\Users\\agafo\\PycharmProjects\\pythonProject15_PageObjects_tests\\photos\\3.bmp")
+photo_4_gif = os.path.abspath("C:\\Users\\agafo\\PycharmProjects\\pythonProject15_PageObjects_tests\\photos\\4.gif")
 
 load_dotenv()
 email = os.getenv('email')
