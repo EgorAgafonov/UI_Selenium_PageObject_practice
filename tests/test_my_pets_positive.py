@@ -87,11 +87,11 @@ class TestMyPetsPagePositive:
         удаления."""
 
         page = MyPetsPage(driver)
-        cards_before_delete = page.get_pets_quantity
+        cards_before_delete = page.get_pets_quantity(driver)
         page.delete_pet_btn_click()
         page.refresh_page()
         page.scroll_down()
-        cards_after_delete = page.get_pets_quantity - 1
+        cards_after_delete = page.get_pets_quantity(driver)
 
         assert cards_before_delete != cards_after_delete, "Ошибка! Проверьте наличие хотя бы 1-ой карточки питомца в" \
                                                           "профиле и/или корректность пути локатора элемента."
