@@ -37,7 +37,7 @@ class TestMyPetsPagePositive:
 
         page = MyPetsPage(driver)
         page.add_pet_btn_click()
-        page.enter_photo(photo_1_jpg)
+        page.enter_photo(photo_2_jpg)
         page.enter_name("Чарльз")
         page.enter_breed("британская вислоухая")
         page.enter_age(9)
