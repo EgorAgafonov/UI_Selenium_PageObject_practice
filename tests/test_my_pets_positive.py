@@ -93,6 +93,7 @@ class TestMyPetsPagePositive:
         cards_before_delete = page.get_pets_quantity(driver)
         page.delete_pet_btn_click()
         page.refresh_page()
+        page.wait_page_loaded(check_page_changes=True, check_images=True)
         page.scroll_down()
         cards_after_delete = page.get_pets_quantity(driver)
 
