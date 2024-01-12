@@ -72,7 +72,7 @@ class TestMyPetsPagePositive:
         page.enter_breed(breed)
         page.enter_age(age)
         page.submit_pet_btn_click()
-        page.wait_page_loaded(check_page_changes=True, check_images=True)
+        page.wait_page_loaded(check_page_changes=True)
         page.scroll_down(offset=50)
 
         if page.get_relative_link() != "/my_pets":
@@ -90,11 +90,15 @@ class TestMyPetsPagePositive:
         удаления."""
 
         page = MyPetsPage(driver)
+        page.wait_page_loaded(check_page_changes=True)
+        pets_quantity = page.get_pets_quantity(driver)
+        if pets_quantity == 0:
+            raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
+                            "удаления!")
         cards_before_delete = page.get_pets_quantity(driver)
-        page.delete_pet_btn_click()
+        page.delete_pet_btn_click(driver)
         page.refresh_page()
-        page.wait_page_loaded(check_page_changes=True, check_images=True)
-        page.scroll_down()
+        page.wait_page_loaded(check_page_changes=True)
         cards_after_delete = page.get_pets_quantity(driver)
 
         assert cards_before_delete != cards_after_delete, "Ошибка! Проверьте наличие хотя бы 1-ой карточки питомца в" \
@@ -105,23 +109,23 @@ class TestMyPetsPagePositive:
     @pytest.mark.four
     @pytest.mark.delete_all_pets
     def test_delete_all_pets_positive(self, driver):
-        """Позитивный тест проверки удаления пользователем ранее созданной им карточки питомца. Валидация теста
+        """Позитивный тест проверки удаления пользователем всех созданных им карточек питомцев. Валидация теста
         выполнена успешно в случае, если после нажатия на элемент "Удалить питомца" в карточке питомца, указанная
         карточка пропадает из стека питомцев пользователя. Тест предусматривает проверку количества карточек до и после
         удаления."""
 
         page = MyPetsPage(driver)
-        page.wait_page_loaded(check_page_changes=True, check_images=True)
+        page.wait_page_loaded(check_page_changes=True)
         pets_quantity = page.get_pets_quantity(driver)
         if pets_quantity == 0:
             raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
                             "удаления!")
-        while pets_quantity != 1:
-            page.wait_page_loaded(check_page_changes=True, check_images=True)
-            page.delete_pet_btn_click()
+        while pets_quantity != 0:
+            page.delete_pet_btn_click(driver)
             page.refresh_page()
-            page.wait_page_loaded(check_page_changes=True, check_images=True)
+            page.wait_page_loaded(check_page_changes=True)
             pets_quantity = page.get_pets_quantity(driver)
+
 
 
 

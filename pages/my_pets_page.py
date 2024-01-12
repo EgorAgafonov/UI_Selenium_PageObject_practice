@@ -15,7 +15,7 @@ class MyPetsPage(BasePage):
 
         self.add_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_NEW_PET_BTN)
         self.submit_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_SUBMIT_PET_BTN)
-        self.delete_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_DELETE_PET_BTN)
+        # self.delete_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_DELETE_PET_BTN)
         self.photo = driver.find_element(*MyPetsLocators.MY_PETS_PHOTO)
         self.name = driver.find_element(*MyPetsLocators.MY_PETS_NAME)
         self.breed = driver.find_element(*MyPetsLocators.MY_PETS_BREED)
@@ -39,10 +39,13 @@ class MyPetsPage(BasePage):
     def submit_pet_btn_click(self):
         self.submit_pet_btn.click()
 
-    def delete_pet_btn_click(self):
-        self.delete_pet_btn.click()
+    @staticmethod
+    def delete_pet_btn_click(driver):
+        delete_button = driver.find_element(*MyPetsLocators.MY_PETS_DELETE_PET_BTN)
+        delete_button.click()
 
-    def get_pets_quantity(self, driver):
+    @staticmethod
+    def get_pets_quantity(driver):
         num = len(driver.find_elements(*MyPetsLocators.MY_PETS_CARDS_QUANTITY))
         return num
 
