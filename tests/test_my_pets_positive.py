@@ -18,7 +18,8 @@ class TestMyPetsPagePositive:
         page.enter_breed("abyssinian")
         page.enter_age(4)
         page.submit_pet_btn_click()
-        page.scroll_down()
+        page.wait_page_loaded(check_page_changes=True)
+        page.scroll_down(offset=100)
 
         if page.get_relative_link() != "/my_pets":
             print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
