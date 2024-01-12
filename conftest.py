@@ -17,7 +17,7 @@ def duration_of_test(request):
     print(Style.DIM + Fore.BLACK + Back.YELLOW + f"3/3) ВСЕГО продолжительность теста {request.function.__name__}: {end_time - start_time} сек.")
 
 
-@pytest.fixture()
+@pytest.fixture(scope='class')
 def driver():
     """Pytest-фикстура(декоратор) для setup-запуска UI-тестов, спроектированных с помощью паттерна PageObjectModel и
     фреймворка Selenium. Определяет setup-настройки перед началом выполнения тестовой функции. Инициализирует

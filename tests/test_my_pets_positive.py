@@ -72,7 +72,8 @@ class TestMyPetsPagePositive:
         page.enter_breed(breed)
         page.enter_age(age)
         page.submit_pet_btn_click()
-        page.scroll_down()
+        page.wait_page_loaded(check_page_changes=True, check_images=True)
+        page.scroll_down(offset=50)
 
         if page.get_relative_link() != "/my_pets":
             print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
