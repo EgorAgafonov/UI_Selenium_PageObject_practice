@@ -19,7 +19,7 @@ class TestMyPetsPagePositive:
         page.enter_age(4)
         page.submit_pet_btn_click()
         page.wait_page_loaded(check_page_changes=True)
-        page.scroll_down(offset=100)
+        page.scroll_down(offset=50)
 
         if page.get_relative_link() != "/my_pets":
             print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
@@ -38,12 +38,13 @@ class TestMyPetsPagePositive:
 
         page = MyPetsPage(driver)
         page.add_pet_btn_click()
-        page.enter_photo(photo_2_jpg)
+        page.enter_photo(photo_1_jpg)
         page.enter_name("Чарльз")
         page.enter_breed("британская вислоухая")
         page.enter_age(9)
         page.submit_pet_btn_click()
-        page.scroll_down()
+        page.wait_page_loaded(check_page_changes=True, check_images=True)
+        page.scroll_down(offset=50)
 
         if page.get_relative_link() != "/my_pets":
             print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
