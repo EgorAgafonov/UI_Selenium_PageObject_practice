@@ -110,12 +110,13 @@ class TestMyPetsPagePositive:
     @pytest.mark.delete_all_pets
     def test_delete_all_pets_positive(self, driver):
         """Позитивный тест проверки удаления пользователем всех созданных им карточек питомцев. Валидация теста
-        выполнена успешно в случае, если после нажатия на элемент "Удалить питомца" в карточке питомца, указанная
-        карточка пропадает из стека питомцев пользователя. Тест предусматривает проверку количества карточек до и после
-        удаления."""
+        выполнена успешно в случае, если после последовательного воздействия на элемент "Удалить питомца" в каждой
+        карточке питомца, все карточки будут удалены из стека пользователя. Тест предусматривает проверку количества
+        карточек до и после удаления."""
 
         page = MyPetsPage(driver)
         page.wait_page_loaded(check_page_changes=True)
+        cards_before_delete = page.get_pets_quantity(driver)
         pets_quantity = page.get_pets_quantity(driver)
         if pets_quantity == 0:
             raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
@@ -125,6 +126,12 @@ class TestMyPetsPagePositive:
             page.refresh_page()
             page.wait_page_loaded(check_page_changes=True)
             pets_quantity = page.get_pets_quantity(driver)
+
+        cards_after_delete = page.get_pets_quantity(driver)
+
+        assert cards_after_delete == 0, "Ошибка, не все карточки удалены!"
+        print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
+              f"{cards_after_delete}")
 
 
 
