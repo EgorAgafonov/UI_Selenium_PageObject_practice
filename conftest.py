@@ -35,10 +35,10 @@ def driver():
     driver.get(url)
     driver.add_cookie({"name": "session", "value": cookie_value})
     yield driver
-    driver.quit()
+    # driver.quit()
 
 
-@pytest.fixture()
+@pytest.fixture(scope="class")
 def auth_driver():
     """Pytest-фикстура(декоратор) для запуска UI-тестов проверки модуля авторизации пользователя на сайте
     www.petfriends.skillfactory.ru.Аналогична setup-фикстуре driver (см. выше), за исключением отсутствия возможности
@@ -48,4 +48,4 @@ def auth_driver():
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
     yield driver
-    driver.quit()
+    # driver.quit()

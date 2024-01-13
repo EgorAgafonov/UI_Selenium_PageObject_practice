@@ -15,6 +15,7 @@ class TestsAuthPagePositive:
         page = AuthPage(auth_driver)
         page.enter_email(email)
         page.enter_pass(password)
+        page.wait_page_loaded()
         page.btn_click()
 
         assert page.get_relative_link() == "/all_pets"
