@@ -15,7 +15,6 @@ class MyPetsPage(BasePage):
 
         self.add_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_NEW_PET_BTN)
         self.submit_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_SUBMIT_PET_BTN)
-        # self.delete_pet_btn = driver.find_element(*MyPetsLocators.MY_PETS_DELETE_PET_BTN)
         self.photo = driver.find_element(*MyPetsLocators.MY_PETS_PHOTO)
         self.name = driver.find_element(*MyPetsLocators.MY_PETS_NAME)
         self.breed = driver.find_element(*MyPetsLocators.MY_PETS_BREED)
