@@ -2,8 +2,6 @@ import pytest
 from pages.my_pets_page import MyPetsPage
 from settings import *
 from colorama import Fore, Style
-from selenium.webdriver.common.by import By
-import time
 
 
 class TestMyPetsPageNegative:
@@ -30,7 +28,7 @@ class TestMyPetsPageNegative:
         page.enter_age(age)
         page.submit_pet_btn_click()
         page.refresh_page()
-        page.scroll_up()
+        page.wait_page_loaded()
         cards_after_create = page.get_pets_quantity(driver)
 
         if cards_before_create == cards_after_create:

@@ -35,7 +35,7 @@ def driver():
     driver.get(url)
     driver.add_cookie({"name": "session", "value": cookie_value})
     yield driver
-    # driver.quit()
+    driver.quit()
 
 
 @pytest.fixture(scope="class")
@@ -48,4 +48,4 @@ def auth_driver():
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
     yield driver
-    # driver.quit()
+    driver.quit()

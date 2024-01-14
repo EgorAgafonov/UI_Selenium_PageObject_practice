@@ -19,6 +19,7 @@ class TestsAuthPageNegative:
         page.enter_email(invalid_email)
         page.enter_pass(invalid_password)
         page.btn_click()
+        page.wait_page_loaded()
         allert_msg = page.check_allert_msg(auth_driver)
 
         assert allert_msg == "The combination of user name and password is incorrect"
