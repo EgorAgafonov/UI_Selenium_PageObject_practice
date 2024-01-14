@@ -13,10 +13,11 @@ class TestsAuthPagePositive:
         сайте и осуществляет его перевод на страницу path = "/all_pets"."""
 
         page = AuthPage(auth_driver)
+        page.wait_page_loaded()
         page.enter_email(email)
         page.enter_pass(password)
-        page.wait_page_loaded()
         page.btn_click()
+        page.wait_page_loaded()
 
         assert page.get_relative_link() == "/all_pets"
 
