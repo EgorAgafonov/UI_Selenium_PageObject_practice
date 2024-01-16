@@ -37,6 +37,7 @@ class TestMyPetsPagePositive:
     @pytest.mark.create_wth_photo
     @allure.feature('Open pages')
     @allure.story("Создание карточки питомца с фото_позит-ый тест")
+    @allure.severity("blocker")
     def test_create_pet_wth_photo_positive(self, driver):
         """Позитивный тест проверки создания карточки питомца с фото. Валидация теста выполнена успешно в случае, если
          после ввода всех необходимых данных в форму карточки, пользователь остается на страницы с эндпоинтом
@@ -87,6 +88,9 @@ class TestMyPetsPagePositive:
 
     @pytest.mark.three
     @pytest.mark.delete_pet
+    @allure.feature('Open pages')
+    @allure.story("Удаление карточки питомца_позит-ый тест")
+    @allure.severity("critical")
     def test_delete_pet_positive(self, driver):
         """Позитивный тест проверки удаления пользователем ранее созданной им карточки питомца. Валидация теста
         выполнена успешно в случае, если после нажатия на элемент "Удалить питомца" в карточке питомца, указанная
@@ -94,15 +98,16 @@ class TestMyPetsPagePositive:
         удаления."""
 
         page = MyPetsPage(driver)
-        page.wait_page_loaded(check_page_changes=True)
+        page.wait_page_loaded()
         pets_quantity = page.get_pets_quantity(driver)
         if pets_quantity == 0:
             raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
                             "удаления!")
         cards_before_delete = page.get_pets_quantity(driver)
         page.delete_pet_btn_click(driver)
+        page.wait_page_loaded()
         page.refresh_page()
-        page.wait_page_loaded(check_page_changes=True)
+        page.wait_page_loaded()
         cards_after_delete = page.get_pets_quantity(driver)
 
         assert cards_before_delete != cards_after_delete, "Ошибка! Проверьте наличие хотя бы 1-ой карточки питомца в" \
@@ -110,6 +115,7 @@ class TestMyPetsPagePositive:
         print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
               f"{cards_after_delete}")
 
+    @pytest.mark.skip(reason="Тест полностью 'чистит' профиль от всех карточек , выполнять по необходимости!")
     @pytest.mark.four
     @pytest.mark.delete_all_pets
     def test_delete_all_pets_positive(self, driver):
