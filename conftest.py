@@ -17,7 +17,7 @@ def duration_of_test(request):
     print(Style.DIM + Fore.BLACK + Back.YELLOW + f"3/3) ВСЕГО продолжительность теста {request.function.__name__}: {end_time - start_time} сек.")
 
 
-@pytest.fixture(scope='class')
+@pytest.fixture(scope='function')
 def driver():
     """Pytest-фикстура(декоратор) для setup-запуска UI-тестов, спроектированных с помощью паттерна PageObjectModel и
     фреймворка Selenium. Определяет setup-настройки перед началом выполнения тестовой функции. Инициализирует
@@ -38,7 +38,7 @@ def driver():
     driver.quit()
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="function")
 def auth_driver():
     """Pytest-фикстура(декоратор) для запуска UI-тестов проверки модуля авторизации пользователя на сайте
     www.petfriends.skillfactory.ru.Аналогична setup-фикстуре driver (см. выше), за исключением отсутствия возможности

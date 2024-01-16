@@ -52,7 +52,7 @@ class TestMyPetsPagePositive:
             assert page.get_relative_link() == "/my_pets"
             print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
-    @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
+    # @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
     @pytest.mark.create_pairwise
     @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
     @pytest.mark.parametrize("name", [russian_chars(), latin_chars()], ids=["cyrillic chars", "latin chars"])
@@ -116,7 +116,7 @@ class TestMyPetsPagePositive:
         P.S. По большей части создан для очистки профиля пользователя от ранее созданных карточек."""
 
         page = MyPetsPage(driver)
-        page.wait_page_loaded(check_page_changes=True)
+        page.wait_page_loaded()
         cards_before_delete = page.get_pets_quantity(driver)
         pets_quantity = page.get_pets_quantity(driver)
         if pets_quantity == 0:
@@ -125,7 +125,7 @@ class TestMyPetsPagePositive:
         while pets_quantity != 0:
             page.delete_pet_btn_click(driver)
             page.refresh_page()
-            page.wait_page_loaded(check_page_changes=True)
+            page.wait_page_loaded()
             pets_quantity = page.get_pets_quantity(driver)
 
         cards_after_delete = page.get_pets_quantity(driver)
