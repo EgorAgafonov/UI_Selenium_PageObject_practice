@@ -17,7 +17,7 @@ class TestMyPetsPagePositive:
         """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае, если
         после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets", а
         карточка отображается в стеке питомцев пользователя со всеми переданными данными (без фото соответственно)."""
-        with allure.step("Шаг 1: Ввод данных и создание карточки питомца."):
+        with allure.step("Шаг 1: Ввод данных и создание карточки питомца без фото."):
             page = MyPetsPage(driver)
             page.add_pet_btn_click()
             page.enter_name("Kristi")
@@ -45,21 +45,23 @@ class TestMyPetsPagePositive:
          после ввода всех необходимых данных в форму карточки, пользователь остается на страницы с эндпоинтом
          "/my_pets", а карточка отображается в стеке питомцев пользователя со всеми указанными данными."""
 
-        page = MyPetsPage(driver)
-        page.add_pet_btn_click()
-        page.enter_photo(photo_1_jpg)
-        page.enter_name("Чарльз")
-        page.enter_breed("британская вислоухая")
-        page.enter_age(9)
-        page.submit_pet_btn_click()
-        page.refresh_page()
-        page.wait_page_loaded()
-
-        if page.get_relative_link() != "/my_pets":
-            print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
-        else:
-            assert page.get_relative_link() == "/my_pets"
-            print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
+        with allure.step("Шаг 1: Ввод данных и создание карточки питомца c фото."):
+            page = MyPetsPage(driver)
+            page.add_pet_btn_click()
+            page.enter_photo(photo_2_jpg)
+            page.enter_name("Чарльз")
+            page.enter_breed("британская вислоухая")
+            page.enter_age(9)
+            page.submit_pet_btn_click()
+        with allure.step("Шаг 2: Перезагрузка страницы с созданной карточкой питомца."):
+            page.refresh_page()
+            page.wait_page_loaded()
+        with allure.step("Шаг 3: Assert-проверка успешной валидации теста."):
+            if page.get_relative_link() != "/my_pets":
+                print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
+            else:
+                assert page.get_relative_link() == "/my_pets"
+                print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
     @pytest.mark.create_pairwise
@@ -104,25 +106,25 @@ class TestMyPetsPagePositive:
         карточка пропадает из стека питомцев пользователя. Тест предусматривает проверку количества карточек до и после
         удаления."""
 
-        page = MyPetsPage(driver)
-        page.wait_page_loaded()
-        pets_quantity = page.get_pets_quantity(driver)
-        if pets_quantity == 0:
-            raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
-                            "удаления!")
-        cards_before_delete = page.get_pets_quantity(driver)
-        page.delete_pet_btn_click(driver)
-        page.wait_page_loaded()
-        page.refresh_page()
-        page.wait_page_loaded()
-        cards_after_delete = page.get_pets_quantity(driver)
+        with allure.step("Шаг 1: Проверка количества карточек питомцев в профиле (если нет ни одной -> Exception)."):
+            page = MyPetsPage(driver)
+            pets_quantity = page.get_pets_quantity(driver)
+            if pets_quantity == 0:
+                raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
+                                "удаления!")
+        with allure.step("Шаг 2: Удаление карточки питомца"):
+            cards_before_delete = page.get_pets_quantity(driver)
+            page.delete_pet_btn_click(driver)
+            page.refresh_page()
+            page.wait_page_loaded(wait_for_element=page.add_pet_btn)
+            cards_after_delete = page.get_pets_quantity(driver)
+        with allure.step("Шаг 3: Assert-проверка количества карточек до/после удаления."):
+            assert cards_before_delete != cards_after_delete, ("Ошибка! Проверьте наличие хотя бы 1-ой карточки питомца"
+                                                               "в профиле и/или корректность пути локатора элемента.")
+            print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
+                  f"{cards_after_delete}")
 
-        assert cards_before_delete != cards_after_delete, "Ошибка! Проверьте наличие хотя бы 1-ой карточки питомца в" \
-                                                          "профиле и/или корректность пути локатора элемента."
-        print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
-              f"{cards_after_delete}")
-
-    @pytest.mark.skip(reason="Тест полностью 'чистит' профиль от всех карточек , выполнять по необходимости!")
+    # @pytest.mark.skip(reason="Тест полностью 'чистит' профиль от всех карточек, выполнять по необходимости!")
     @pytest.mark.four
     @pytest.mark.delete_all_pets
     @allure.feature('Удаление карточек питомцев_POSITIVE TESTS')
@@ -133,26 +135,28 @@ class TestMyPetsPagePositive:
         выполнена успешно в случае, если после последовательного воздействия на элемент "Удалить питомца" в каждой
         карточке питомца, все карточки будут удалены из стека пользователя. Тест предусматривает проверку количества
         карточек до и после удаления.
-        P.S. По большей части создан для очистки профиля пользователя от ранее созданных карточек."""
+        P.S. По большей части тест создан для очистки профиля пользователя от ранее созданных карточек."""
 
-        page = MyPetsPage(driver)
-        page.wait_page_loaded()
-        cards_before_delete = page.get_pets_quantity(driver)
-        pets_quantity = page.get_pets_quantity(driver)
-        if pets_quantity == 0:
-            raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
-                            "удаления!")
-        while pets_quantity != 0:
-            page.delete_pet_btn_click(driver)
-            page.refresh_page()
+        with allure.step("Шаг 1: Проверка количества карточек питомцев в профиле (если нет ни одной -> Exception)."):
+            page = MyPetsPage(driver)
             page.wait_page_loaded()
+            cards_before_delete = page.get_pets_quantity(driver)
             pets_quantity = page.get_pets_quantity(driver)
+            if pets_quantity == 0:
+                raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
+                                "удаления!")
+        with allure.step("Шаг 2: Удаление всех карточек питомцев из профиля с пом. цикла while"):
+            while pets_quantity != 0:
+                page.delete_pet_btn_click(driver)
+                page.refresh_page()
+                page.wait_page_loaded(wait_for_element=page.add_pet_btn)
+                pets_quantity = page.get_pets_quantity(driver)
 
-        cards_after_delete = page.get_pets_quantity(driver)
-
-        assert cards_after_delete == 0, "Ошибка, не все карточки удалены!"
-        print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
-              f"{cards_after_delete}")
+            cards_after_delete = page.get_pets_quantity(driver)
+        with allure.step("Шаг 3: Assert-проверка количества карточек до/после удаления."):
+            assert cards_after_delete == 0, "Ошибка, не все карточки удалены!"
+            print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
+                  f"{cards_after_delete}")
 
 
 
