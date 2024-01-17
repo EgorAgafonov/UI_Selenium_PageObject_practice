@@ -12,8 +12,8 @@ class TestMyPetsPagePositive:
     @pytest.mark.create_simple
     @allure.feature('Создание карточек питомцев_POSITIVE TESTS')
     @allure.story("Создание карточки питомца без фото")
-    @allure.severity("blocker")
-    def test_create_pet_simple_positive(self, driver):
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_create_pet_simple_positive(self, driver, duration_of_test):
         """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае, если
         после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets", а
         карточка отображается в стеке питомцев пользователя со всеми переданными данными (без фото соответственно)."""
