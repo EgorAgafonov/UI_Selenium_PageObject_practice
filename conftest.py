@@ -7,7 +7,7 @@ from colorama import Fore, Style, Back
 import os
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def duration_of_test(request):
     start_time = datetime.now()
     print(f'\n1/3) Начало выполнения тестовой функции: {start_time} сек.')
@@ -18,7 +18,7 @@ def duration_of_test(request):
                                                  f"{end_time - start_time} сек.")
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="class", autouse=True)
 def driver():
     """Pytest-фикстура(декоратор) для setup-запуска UI-тестов, спроектированных с помощью паттерна PageObjectModel и
     фреймворка Selenium. Определяет setup-настройки перед началом выполнения тестовой функции. Инициализирует
@@ -39,7 +39,7 @@ def driver():
     driver.quit()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="class", autouse=True)
 def auth_driver():
     """Pytest-фикстура(декоратор) для запуска UI-тестов проверки модуля авторизации пользователя на сайте
     www.petfriends.skillfactory.ru.Аналогична setup-фикстуре driver (см. выше), за исключением отсутствия возможности

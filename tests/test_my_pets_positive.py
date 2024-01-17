@@ -63,7 +63,7 @@ class TestMyPetsPagePositive:
                 assert page.get_relative_link() == "/my_pets"
                 print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
-    @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
+    # @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
     @pytest.mark.create_pairwise
     @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
     @pytest.mark.parametrize("name", [russian_chars(), latin_chars()], ids=["cyrillic chars", "latin chars"])
@@ -79,21 +79,23 @@ class TestMyPetsPagePositive:
         эндпоинтом "/my_pets", а каждая сгенерированная карточка отображается в стеке питомцев пользователя со всеми
         переданными через фикстуру данными."""
 
-        page = MyPetsPage(driver)
-        page.add_pet_btn_click()
-        page.enter_photo(photo)
-        page.enter_name(name)
-        page.enter_breed(breed)
-        page.enter_age(age)
-        page.submit_pet_btn_click()
-        page.refresh_page()
-        page.wait_page_loaded()
-
-        if page.get_relative_link() != "/my_pets":
-            print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
-        else:
-            assert page.get_relative_link() == "/my_pets"
-            print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
+        with allure.step("Шаг 1: Создание карточки питомца с вериф. знач. photo, name, breed, age"):
+            page = MyPetsPage(driver)
+            page.add_pet_btn_click()
+            page.enter_photo(photo)
+            page.enter_name(name)
+            page.enter_breed(breed)
+            page.enter_age(age)
+            page.submit_pet_btn_click()
+        with allure.step("Шаг 2: Перезагрузка страницы после создания карточки."):
+            page.refresh_page()
+            page.wait_page_loaded()
+        with allure.step("Шаг 3: Assert-проверка успешной валидации теста."):
+            if page.get_relative_link() != "/my_pets":
+                print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
+            else:
+                assert page.get_relative_link() == "/my_pets"
+                print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     @pytest.mark.three
     @pytest.mark.delete_pet
@@ -151,7 +153,6 @@ class TestMyPetsPagePositive:
                 page.refresh_page()
                 page.wait_page_loaded(wait_for_element=page.add_pet_btn)
                 pets_quantity = page.get_pets_quantity(driver)
-
             cards_after_delete = page.get_pets_quantity(driver)
         with allure.step("Шаг 3: Assert-проверка количества карточек до/после удаления."):
             assert cards_after_delete == 0, "Ошибка, не все карточки удалены!"
