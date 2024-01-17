@@ -30,7 +30,7 @@ def driver():
     повышает восприятие и "читаемость" кода."""
 
     options = Options()
-    options.add_argument("--start-maximized")
+    options.add_argument("--headless")
     driver = webdriver.Chrome(options=options)
     url = os.getenv("LOGIN_URL") or "https://petfriends.skillfactory.ru/login"
     driver.get(url)

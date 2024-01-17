@@ -12,8 +12,8 @@ class TestMyPetsPagePositive:
     @pytest.mark.create_simple
     @allure.feature('Создание карточек питомцев_POSITIVE TESTS')
     @allure.story("Создание карточки питомца без фото")
-    @allure.severity(allure.severity_level.CRITICAL)
-    def test_create_pet_simple_positive(self, driver, duration_of_test):
+    @allure.severity(allure.severity_level.BLOCKER)
+    def test_create_pet_simple_positive(self, driver):
         """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае, если
         после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets", а
         карточка отображается в стеке питомцев пользователя со всеми переданными данными (без фото соответственно)."""
@@ -39,7 +39,7 @@ class TestMyPetsPagePositive:
     @pytest.mark.create_wth_photo
     @allure.feature('Создание карточек питомцев_POSITIVE TESTS')
     @allure.story("Создание карточки питомца с фото")
-    @allure.severity("blocker")
+    @allure.severity(allure.severity_level.BLOCKER)
     def test_create_pet_wth_photo_positive(self, driver):
         """Позитивный тест проверки создания карточки питомца с фото. Валидация теста выполнена успешно в случае, если
          после ввода всех необходимых данных в форму карточки, пользователь остается на страницы с эндпоинтом
@@ -71,7 +71,7 @@ class TestMyPetsPagePositive:
     @pytest.mark.parametrize("age", [3, 0.9], ids=["integer num", "float num"])
     @allure.feature('Создание карточек питомцев_POSITIVE TESTS')
     @allure.story("Создание карточек питомцев с параметризацией данных (верифицированные значения)")
-    @allure.severity("blocker")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_create_pet_params_positive(self, driver, photo, name, breed, age):
         """Позитивный тест проверки создания карточек питомцев с верифицированными параметрами значений согласно
         спецификации. Реализована техника попарного тестирования Pairwise. Валидация каждого теста выполнена успешно в
@@ -101,7 +101,7 @@ class TestMyPetsPagePositive:
     @pytest.mark.delete_pet
     @allure.feature('Удаление карточек питомцев_POSITIVE TESTS')
     @allure.story("Удаление карточки питомца из профиля пользователя")
-    @allure.severity("blocker")
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_delete_pet_positive(self, driver):
         """Позитивный тест проверки удаления пользователем ранее созданной им карточки питомца. Валидация теста
         выполнена успешно в случае, если после нажатия на элемент "Удалить питомца" в карточке питомца, указанная
@@ -131,7 +131,7 @@ class TestMyPetsPagePositive:
     @pytest.mark.delete_all_pets
     @allure.feature('Удаление карточек питомцев_POSITIVE TESTS')
     @allure.story("Удаление всех карточек питомцев из профиля пользователя (очистка профиля)")
-    @allure.severity("critical")
+    @allure.severity(allure.severity_level.NORMAL)
     def test_delete_all_pets_positive(self, driver):
         """Позитивный тест проверки удаления пользователем всех созданных им карточек питомцев. Валидация теста
         выполнена успешно в случае, если после последовательного воздействия на элемент "Удалить питомца" в каждой
