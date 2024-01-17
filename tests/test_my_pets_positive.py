@@ -93,9 +93,9 @@ class TestMyPetsPagePositive:
 
     @pytest.mark.three
     @pytest.mark.delete_pet
-    @allure.feature('Open pages')
-    @allure.story("Удаление карточки питомца_позит-ый тест")
-    @allure.severity("critical")
+    @allure.feature('Удаление карточек питомцев_POSITIVE TESTS')
+    @allure.story("Удаление карточки питомца из профиля пользователя")
+    @allure.severity("blocker")
     def test_delete_pet_positive(self, driver):
         """Позитивный тест проверки удаления пользователем ранее созданной им карточки питомца. Валидация теста
         выполнена успешно в случае, если после нажатия на элемент "Удалить питомца" в карточке питомца, указанная
@@ -123,6 +123,9 @@ class TestMyPetsPagePositive:
     # @pytest.mark.skip(reason="Тест полностью 'чистит' профиль от всех карточек , выполнять по необходимости!")
     @pytest.mark.four
     @pytest.mark.delete_all_pets
+    @allure.feature('Удаление карточек питомцев_POSITIVE TESTS')
+    @allure.story("Удаление всех карточек питомцев из профиля пользователя (очистка профиля)")
+    @allure.severity("critical")
     def test_delete_all_pets_positive(self, driver):
         """Позитивный тест проверки удаления пользователем всех созданных им карточек питомцев. Валидация теста
         выполнена успешно в случае, если после последовательного воздействия на элемент "Удалить питомца" в каждой
@@ -140,7 +143,7 @@ class TestMyPetsPagePositive:
         while pets_quantity != 0:
             page.delete_pet_btn_click(driver)
             page.refresh_page()
-            time.sleep(1)
+            page.wait_page_loaded()
             pets_quantity = page.get_pets_quantity(driver)
 
         cards_after_delete = page.get_pets_quantity(driver)

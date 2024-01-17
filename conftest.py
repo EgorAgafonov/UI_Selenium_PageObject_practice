@@ -1,22 +1,21 @@
-import time
 import pytest
 from selenium import webdriver
 from settings import *
 from selenium.webdriver.chrome.options import *
-# from datetime import *
+from datetime import *
 from colorama import Fore, Style, Back
 import os
 
 
-# @pytest.fixture(scope='function')
-# def duration_of_test(request):
-#     start_time = datetime.now()
-#     print(f'\n1/3) Начало выполнения тестовой функции: {start_time} сек.')
-#     yield
-#     end_time = datetime.now()
-#     print(f'2/3) Окончание выполнения тестовой функции: {end_time} сек.')
-#     print(Style.DIM + Fore.BLACK + Back.YELLOW + f"3/3) ВСЕГО продолжительность теста {request.function.__name__}: "
-#                                                  f"{end_time - start_time} сек.")
+@pytest.fixture(scope='function')
+def duration_of_test(request):
+    start_time = datetime.now()
+    print(f'\n1/3) Начало выполнения тестовой функции: {start_time} сек.')
+    yield
+    end_time = datetime.now()
+    print(f'2/3) Окончание выполнения тестовой функции: {end_time} сек.')
+    print(Style.DIM + Fore.BLACK + Back.YELLOW + f"3/3) ВСЕГО продолжительность теста {request.function.__name__}: "
+                                                 f"{end_time - start_time} сек.")
 
 
 @pytest.fixture(scope='function')
