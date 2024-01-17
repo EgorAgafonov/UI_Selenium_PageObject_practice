@@ -4,7 +4,7 @@ from allure_commons.types import AttachmentType
 from pages.my_pets_page import MyPetsPage
 from settings import *
 from colorama import Fore, Style
-import time
+from conftest import *
 
 
 class TestMyPetsPagePositive:
@@ -29,7 +29,6 @@ class TestMyPetsPagePositive:
             print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
         else:
             assert page.get_relative_link() == "/my_pets"
-            time.sleep(2)
             page.make_screenshot()
             print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
@@ -58,7 +57,7 @@ class TestMyPetsPagePositive:
             assert page.get_relative_link() == "/my_pets"
             print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
-    @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
+    # @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
     @pytest.mark.create_pairwise
     @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
     @pytest.mark.parametrize("name", [russian_chars(), latin_chars()], ids=["cyrillic chars", "latin chars"])
