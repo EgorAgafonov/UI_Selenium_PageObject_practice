@@ -20,15 +20,18 @@ class TestMyPetsPagePositive:
         with allure.step("Шаг 1: Ввод данных и создание карточки питомца без фото."):
             page = MyPetsPage(driver)
             page.add_pet_btn_click()
-            page.enter_name("Kristi")
+            page.enter_name("Tusya")
             page.enter_breed("abyssinian")
-            page.enter_age(4)
+            page.enter_age(1.6)
             page.submit_pet_btn_click()
         with allure.step("Шаг 2: Перезагрузка страницы с созданной карточкой питомца."):
             page.refresh_page()
             page.wait_page_loaded()
         with allure.step("Шаг 3: Assert-проверка успешной валидации теста."):
             if page.get_relative_link() != "/my_pets":
+                page_scrnshot_PNG = page.make_screenshot()
+                allure.attach(page_scrnshot_PNG, name=f"{}", attachment_type=allure.attachment_type.PNG
+                )
                 print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
             else:
                 assert page.get_relative_link() == "/my_pets"
