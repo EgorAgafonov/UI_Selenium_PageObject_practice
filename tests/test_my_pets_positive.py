@@ -29,13 +29,17 @@ class TestMyPetsPagePositive:
             page.wait_page_loaded()
         with allure.step("Шаг 3: Assert-проверка успешной валидации теста."):
             if page.get_relative_link() != "/my_pets":
-                page_scrnshot_PNG = page.make_screenshot()
-                allure.attach(page_scrnshot_PNG, name=f"{}", attachment_type=allure.attachment_type.PNG
-                )
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="create_pet_simple_FAILED",
+                              attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
             else:
                 assert page.get_relative_link() == "/my_pets"
-                page.make_screenshot()
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="create_pet_simple_PASSED",
+                              attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     @pytest.mark.two
@@ -61,9 +65,17 @@ class TestMyPetsPagePositive:
             page.wait_page_loaded()
         with allure.step("Шаг 3: Assert-проверка успешной валидации теста."):
             if page.get_relative_link() != "/my_pets":
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="create_pet_wth_photo_FAILED",
+                              attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
             else:
                 assert page.get_relative_link() == "/my_pets"
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="create_pet_wth_photo_PASSED",
+                              attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     # @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
@@ -95,9 +107,17 @@ class TestMyPetsPagePositive:
             page.wait_page_loaded()
         with allure.step("Шаг 3: Assert-проверка успешной валидации теста."):
             if page.get_relative_link() != "/my_pets":
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="create_pet_params_FAILED",
+                              attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
             else:
                 assert page.get_relative_link() == "/my_pets"
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="create_pet_params_PASSED",
+                              attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     @pytest.mark.three
@@ -124,10 +144,20 @@ class TestMyPetsPagePositive:
             page.wait_page_loaded(wait_for_element=page.add_pet_btn)
             cards_after_delete = page.get_pets_quantity(driver)
         with allure.step("Шаг 3: Assert-проверка количества карточек до/после удаления."):
-            assert cards_before_delete != cards_after_delete, ("Ошибка! Проверьте наличие хотя бы 1-ой карточки питомца"
-                                                               "в профиле и/или корректность пути локатора элемента.")
-            print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
-                  f"{cards_after_delete}")
+            if cards_before_delete == cards_after_delete:
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="delete_pet_FAILED",
+                              attachment_type=allure.attachment_type.PNG)
+                raise Exception("Ошибка! Карточка питомца не удалена из профиля пользователя.")
+            else:
+                assert cards_before_delete != cards_after_delete
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="delete_pet_PASSED",
+                              attachment_type=allure.attachment_type.PNG)
+                print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
+                      f"{cards_after_delete}")
 
     # @pytest.mark.skip(reason="Тест полностью 'чистит' профиль от всех карточек, выполнять по необходимости!")
     @pytest.mark.four
@@ -148,9 +178,13 @@ class TestMyPetsPagePositive:
             cards_before_delete = page.get_pets_quantity(driver)
             pets_quantity = page.get_pets_quantity(driver)
             if pets_quantity == 0:
+                screenshot = page.make_screenshot()
+                allure.attach(screenshot,
+                              name="delete_all_pets_FAILED",
+                              attachment_type=allure.attachment_type.PNG)
                 raise Exception("Добавленные(ый) пользователем питомцы(ец) отсутствуют(ет), нет ни одной карточки для "
                                 "удаления!")
-        with allure.step("Шаг 2: Удаление всех карточек питомцев из профиля с пом. цикла while"):
+        with allure.step("Шаг 2: Удаление всех карточек питомцев из профиля"):
             while pets_quantity != 0:
                 page.delete_pet_btn_click(driver)
                 page.refresh_page()
@@ -159,6 +193,10 @@ class TestMyPetsPagePositive:
             cards_after_delete = page.get_pets_quantity(driver)
         with allure.step("Шаг 3: Assert-проверка количества карточек до/после удаления."):
             assert cards_after_delete == 0, "Ошибка, не все карточки удалены!"
+            screenshot = page.make_screenshot()
+            allure.attach(screenshot,
+                          name="delete_all_pets_PASSED",
+                          attachment_type=allure.attachment_type.PNG)
             print(f"\nКол-во карточек до удаления: {cards_before_delete} \nКол-во карточек после удаления: "
                   f"{cards_after_delete}")
 
