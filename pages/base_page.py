@@ -27,8 +27,11 @@ class BasePage(object):
     def refresh_page(self):
         self.driver.refresh()
 
-    def make_screenshot(self, file_path=screenshots_folder):
+    def save_screenshot(self, file_path=screenshots_folder):
         self.driver.save_screenshot(file_path)
+
+    def get_page_screenshot_PNG(self) -> bytes:
+        self.driver.get_screenshot_as_png()
 
     def scroll_down(self, offset=0):
         """Метод прокрутки страницы вниз."""
