@@ -105,7 +105,7 @@ class TestMyPetsPagePositive:
                               attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
             else:
-                assert page.get_relative_link() == "/my_pets"()
+                assert page.get_relative_link() == "/my_pets"
                 allure.attach(page.get_page_screenshot_PNG(),
                               name="create_pet_params_PASSED",
                               attachment_type=allure.attachment_type.PNG)
