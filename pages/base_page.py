@@ -31,7 +31,8 @@ class BasePage(object):
         self.driver.save_screenshot(file_path)
 
     def get_page_screenshot_PNG(self) -> bytes:
-        self.driver.get_screenshot_as_png()
+        screenshot_png = self.driver.get_screenshot_as_png()
+        return screenshot_png
 
     def scroll_down(self, offset=0):
         """Метод прокрутки страницы вниз."""
@@ -70,7 +71,7 @@ class BasePage(object):
 
         return source
 
-    def wait_page_loaded(self, timeout=60, check_js_complete=True, check_page_changes=False, check_images=False,
+    def wait_page_loaded(self, timeout=10, check_js_complete=True, check_page_changes=False, check_images=False,
                          wait_for_element=None, wait_for_xpath_to_disappear='', sleep_time=2):
 
         """ Метод для реализации гибкой стратегии ожидания появления элементов страницы. Возможно задать следующее
