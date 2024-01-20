@@ -35,7 +35,6 @@ def driver():
     url = os.getenv("LOGIN_URL") or "https://petfriends.skillfactory.ru/login"
     driver.get(url)
     driver.add_cookie({"name": "session", "value": cookie_value})
-    driver.get_screenshot_as_png()
     yield driver
     driver.quit()
 
@@ -43,7 +42,7 @@ def driver():
 @pytest.fixture(scope="class")
 def auth_driver():
     """Pytest-фикстура(декоратор) для запуска UI-тестов проверки модуля авторизации пользователя на сайте
-    www.petfriends.skillfactory.ru.Аналогична setup-фикстуре driver (см. выше), за исключением отсутствия возможности
+    www.petfriends.skillfactory.ru. Аналогична setup-фикстуре driver (см. выше), за исключением отсутствия возможности
     предварительной авторизации соответственно."""
 
     options = Options()

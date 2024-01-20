@@ -15,7 +15,7 @@ class BasePage(object):
 
     driver = None
 
-    def __init__(self, driver, url, timeout=15):
+    def __init__(self, driver, url, timeout=10):
         self.driver = driver
         self.url = url
         self.driver.implicitly_wait(timeout)
@@ -30,11 +30,13 @@ class BasePage(object):
     def save_screenshot(self, file_path=screenshots_folder):
         """Метод делает скриншот текущей страницы и сохраняет его в формате PNG по адресу, указанному в значении
         аргумента file_path."""
+
         self.driver.save_screenshot(file_path)
 
     def get_page_screenshot_PNG(self) -> bytes:
         """Метод создает бинарный объект - скриншот текущей страницы в формате PNG, после чего возвращает его при
         соответствующем вызове."""
+
         screenshot_png = self.driver.get_screenshot_as_png()
         return screenshot_png
 
@@ -61,6 +63,7 @@ class BasePage(object):
 
     def switch_out_iframe(self):
         """ Отмена фокусировки на элементе страницы по его имени."""
+
         self.driver.switch_to.default_content()
 
     def get_page_source(self):
@@ -75,7 +78,7 @@ class BasePage(object):
 
         return source
 
-    def wait_page_loaded(self, timeout=30, check_js_complete=True, check_page_changes=False, check_images=False,
+    def wait_page_loaded(self, timeout=10, check_js_complete=True, check_page_changes=False, check_images=False,
                          wait_for_element=None, wait_for_xpath_to_disappear='', sleep_time=2):
 
         """ Метод для реализации гибкой стратегии ожидания появления элементов страницы. Возможно задать следующее

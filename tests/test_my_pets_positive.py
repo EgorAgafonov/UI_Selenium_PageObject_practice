@@ -166,7 +166,6 @@ class TestMyPetsPagePositive:
 
         with allure.step("Шаг 1: Проверка количества карточек питомцев в профиле (если нет ни одной -> Exception)."):
             page = MyPetsPage(driver)
-            page.wait_page_loaded()
             cards_before_delete = page.get_pets_quantity(driver)
             pets_quantity = page.get_pets_quantity(driver)
             if pets_quantity == 0:
@@ -179,7 +178,7 @@ class TestMyPetsPagePositive:
             while pets_quantity != 0:
                 page.delete_pet_btn_click(driver)
                 page.refresh_page()
-                page.wait_page_loaded(wait_for_element=page.add_pet_btn)
+                page.wait_page_loaded()
                 pets_quantity = page.get_pets_quantity(driver)
             cards_after_delete = page.get_pets_quantity(driver)
         with allure.step("Шаг 3: Assert-проверка количества карточек до/после удаления."):

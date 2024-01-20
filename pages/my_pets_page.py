@@ -7,7 +7,7 @@ class MyPetsPage(BasePage):
     """Класс с атрибутами и методами для управления элементами страницы https://petfriends.skillfactory.ru/my_pets
      в рамках проектирования UI-тестов по паттерну Page Object Model."""
 
-    def __init__(self, driver, timeout=15):
+    def __init__(self, driver, timeout=10):
         super().__init__(driver, timeout)
 
         url = os.getenv("MY_PETS_URL") or "https://petfriends.skillfactory.ru/my_pets"
