@@ -9,16 +9,15 @@ from conftest import *
 class TestMyPetsPagePositive:
     @pytest.mark.one
     @pytest.mark.create_simple
-    @allure.title("Тест размещения пользователем карточки питомца")
+    @allure.title("Карточки питомцев_POSITIVE TESTS")
     @allure.tag("create_card_simple")
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.label("owner", "John Doe")
-    @allure.link("https://dev.example.com/", name="Website")
-    @allure.issue("AUTH-123")
-    @allure.testcase("TMS-456")
-    @allure.feature('Создание карточек питомцев_POSITIVE TESTS')
+    @allure.label("владелец", "Агафонов Е.")
+    @allure.link("сайт отсутствует", name="Вебсайт")
+    @allure.testcase("ТК-ДП-СКП-ПОЗ-01")
+    @allure.epic("Стек(таблица) карточек питомцев")
+    @allure.feature('Создание карточки питомца')
     @allure.story("Создание карточки питомца без фото")
-
     def test_create_pet_simple_positive(self, driver):
         """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае,
         если после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets",
