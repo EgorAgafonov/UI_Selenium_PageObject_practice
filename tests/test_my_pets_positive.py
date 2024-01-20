@@ -16,6 +16,7 @@ class TestMyPetsPagePositive:
         """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае, если
         после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets", а
         карточка отображается в стеке питомцев пользователя со всеми переданными данными (без фото соответственно)."""
+
         with allure.step("Шаг 1: Ввод данных и создание карточки питомца без фото."):
             page = MyPetsPage(driver)
             page.add_pet_btn_click()
@@ -34,7 +35,9 @@ class TestMyPetsPagePositive:
                 print(Style.DIM + Fore.RED + f"\nКарточка питомца не создана!")
             else:
                 assert page.get_relative_link() == "/my_pets"
-                allure.attach(page.get_page_screenshot_PNG(), name="create_pet_simple_SUCCESS", attachment_type=allure.attachment_type.PNG)
+                allure.attach(page.get_page_screenshot_PNG(),
+                              name="create_pet_simple_SUCCESS",
+                              attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     @pytest.mark.two

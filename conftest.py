@@ -35,6 +35,7 @@ def driver():
     url = os.getenv("LOGIN_URL") or "https://petfriends.skillfactory.ru/login"
     driver.get(url)
     driver.add_cookie({"name": "session", "value": cookie_value})
+    driver.get_screenshot_as_png()
     yield driver
     driver.quit()
 

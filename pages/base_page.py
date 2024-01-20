@@ -28,9 +28,13 @@ class BasePage(object):
         self.driver.refresh()
 
     def save_screenshot(self, file_path=screenshots_folder):
+        """Метод делает скриншот текущей страницы и сохраняет его в формате PNG по адресу, указанному в значении
+        аргумента file_path."""
         self.driver.save_screenshot(file_path)
 
     def get_page_screenshot_PNG(self) -> bytes:
+        """Метод создает бинарный объект - скриншот текущей страницы в формате PNG, после чего возвращает его при
+        соответствующем вызове."""
         screenshot_png = self.driver.get_screenshot_as_png()
         return screenshot_png
 
