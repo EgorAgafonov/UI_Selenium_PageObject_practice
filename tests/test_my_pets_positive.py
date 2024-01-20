@@ -9,13 +9,20 @@ from conftest import *
 class TestMyPetsPagePositive:
     @pytest.mark.one
     @pytest.mark.create_simple
+    @allure.title("Тест размещения пользователем карточки питомца")
+    @allure.tag("create_card_simple")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label("owner", "John Doe")
+    @allure.link("https://dev.example.com/", name="Website")
+    @allure.issue("AUTH-123")
+    @allure.testcase("TMS-456")
     @allure.feature('Создание карточек питомцев_POSITIVE TESTS')
     @allure.story("Создание карточки питомца без фото")
-    @allure.severity(allure.severity_level.BLOCKER)
+
     def test_create_pet_simple_positive(self, driver):
-        """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае, если
-        после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets", а
-        карточка отображается в стеке питомцев пользователя со всеми переданными данными (без фото соответственно)."""
+        """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае,
+        если после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets",
+        а карточка отображается в стеке питомцев пользователя со всеми переданными данными (без фото соответственно)."""
 
         with allure.step("Шаг 1: Ввод данных и создание карточки питомца без фото."):
             page = MyPetsPage(driver)
@@ -118,7 +125,7 @@ class TestMyPetsPagePositive:
     @pytest.mark.delete_pet
     @allure.feature('Удаление карточек питомцев_POSITIVE TESTS')
     @allure.story("Удаление карточки питомца из профиля пользователя")
-    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.severity(allure.severity_level.BLOCKER)
     def test_delete_pet_positive(self, driver):
         """Позитивный тест проверки удаления пользователем ранее созданной им карточки питомца. Валидация теста
         выполнена успешно в случае, если после нажатия на элемент "Удалить питомца" в карточке питомца, указанная
