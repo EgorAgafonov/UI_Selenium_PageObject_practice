@@ -16,8 +16,7 @@ class TestMyPetsPagePositive:
     @allure.label(LabelType.LANGUAGE, "Python")
     @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
     @allure.label("Агафонов Е.А.", "владелец")
-    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="Личный кабинет пользователя(необходима "
-                                                                    "авторизация)!")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @allure.epic("Пользовательский интерфейс")
     @allure.feature("Создание простой карточки питомца (без фото)")
     def test_create_pet_simple_positive(self, driver):
@@ -56,8 +55,7 @@ class TestMyPetsPagePositive:
     @allure.label(LabelType.LANGUAGE, "Python")
     @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
     @allure.label("Агафонов Е.А.", "владелец")
-    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="Личный кабинет пользователя(необходима "
-                                                                    "авторизация)!")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @allure.epic("Пользовательский интерфейс")
     @allure.feature("Создание карточки питомца с фото")
     def test_create_pet_wth_photo_positive(self, driver):
@@ -101,8 +99,7 @@ class TestMyPetsPagePositive:
     @allure.label(LabelType.LANGUAGE, "Python")
     @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
     @allure.label("Агафонов Е.А.", "владелец")
-    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="Личный кабинет пользователя(необходима "
-                                                                    "авторизация)!")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @allure.epic("Пользовательский интерфейс")
     @allure.feature("Создание(генерация) карточек питомцев с параметризацией вериф-нных данных:\n"
                     "'photo', 'name', breed, 'age'.")
@@ -145,8 +142,7 @@ class TestMyPetsPagePositive:
     @allure.label(LabelType.LANGUAGE, "Python")
     @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
     @allure.label("Агафонов Е.А.", "владелец")
-    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="Личный кабинет пользователя(необходима "
-                                                                    "авторизация)!")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @allure.epic("Пользовательский интерфейс")
     @allure.feature("Удаление карточки питомца из профиля пользователя")
     def test_delete_pet_positive(self, driver):
@@ -190,8 +186,7 @@ class TestMyPetsPagePositive:
     @allure.label(LabelType.LANGUAGE, "Python")
     @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
     @allure.label("Агафонов Е.А.", "владелец")
-    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="Личный кабинет пользователя(необходима "
-                                                                    "авторизация)!")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @allure.epic("Пользовательский интерфейс")
     @allure.feature("Последовательное удаление всех карточек питомцев пользователя (очистка профиля)")
     def test_delete_all_pets_positive(self, driver):
