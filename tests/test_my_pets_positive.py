@@ -1,5 +1,6 @@
 import pytest
 import allure
+from allure_commons.types import LabelType
 from pages.my_pets_page import MyPetsPage
 from settings import *
 from colorama import Fore, Style
@@ -9,15 +10,15 @@ from conftest import *
 class TestMyPetsPagePositive:
     @pytest.mark.one
     @pytest.mark.create_simple
-    @allure.title("Карточки питомцев_POSITIVE TESTS")
-    @allure.tag("create_card_simple")
+    @allure.title("Создание карточек питомцев.")
+    @allure.id("TC-CPS-01-POS")
     @allure.severity(allure.severity_level.CRITICAL)
+    @allure.label(LabelType.LANGUAGE, "Python")
+    @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
     @allure.label("владелец", "Агафонов Е.")
     @allure.link("сайт отсутствует", name="Вебсайт")
-    @allure.testcase("ТК-ДП-СКП-ПОЗ-01")
-    @allure.epic("Стек(таблица) карточек питомцев")
-    @allure.feature('Создание карточки питомца')
-    @allure.story("Создание карточки питомца без фото")
+    @allure.epic("Веб-интерфейс https://petfriends.skillfactory.ru/")
+    @allure.feature("Создание карточки питомца без фото")
     def test_create_pet_simple_positive(self, driver):
         """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае,
         если после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets",
