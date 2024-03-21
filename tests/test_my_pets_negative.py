@@ -2,11 +2,23 @@ import pytest
 from pages.my_pets_page import MyPetsPage
 from settings import *
 from colorama import Fore, Style
+import allure
+from allure_commons.types import LabelType
 
 
+@allure.epic("UI-PetFriends")
+@allure.feature("Функциональное тестирование UI (негативные тесты)")
+@allure.story("Создание карточек питомцев (негативные тесты).")
+@allure.label("Агафонов Е.А.", "владелец")
+@allure.label(LabelType.LANGUAGE, "Python")
+@allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
 class TestMyPetsPageNegative:
 
-    @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
+    # @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.title("Параметризация создания простой карточки питомца (без фото) с не верифицированными значениями.")
+    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-CPS-01-NEG-PARAM")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @pytest.mark.create_pet_negative
     @pytest.mark.parametrize("photo", [photo_3_bmp, photo_4_gif], ids=["photo .bmp", "photo .gif"])
     @pytest.mark.parametrize("name", [digits(), special_chars()], ids=["name digits", "name special_chars"])
@@ -32,7 +44,7 @@ class TestMyPetsPageNegative:
         cards_after_create = page.get_pets_quantity(driver)
 
         if cards_before_create == cards_after_create:
-            page.make_screenshot()
+            page.save_screenshot()
             print(f"\nКол-во карточек до момента выполнения теста: {cards_before_create}\nКол-во карточек после "
                   f"выполнения теста: {cards_after_create}")
             print(Style.DIM + Fore.GREEN + f"\nКарточка не создана, в воде недопустимых значений отказано, валидация"
