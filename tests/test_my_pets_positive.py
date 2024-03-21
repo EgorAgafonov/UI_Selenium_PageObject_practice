@@ -9,7 +9,6 @@ from conftest import *
 
 @allure.epic("UI-PetFriends")
 @allure.feature("Функциональное тестирование UI (позитивные тесты)")
-@allure.story("Создание карточек питомцев (позитивные тесты).")
 @allure.label("Агафонов Е.А.", "владелец")
 @allure.label(LabelType.LANGUAGE, "Python")
 @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
@@ -18,6 +17,7 @@ class TestMyPetsPagePositive:
     @pytest.mark.one
     @pytest.mark.create_simple
     @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("Создание карточек питомцев (позитивные тесты).")
     @allure.title("Создание простой карточки питомца (без фото)")
     @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-CPS-01-POS")
     @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
@@ -52,6 +52,7 @@ class TestMyPetsPagePositive:
     @pytest.mark.two
     @pytest.mark.create_wth_photo
     @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("Создание карточек питомцев (позитивные тесты).")
     @allure.title("Создание карточки питомца с фото")
     @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-CPwPH-02-POS")
     @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
@@ -86,14 +87,15 @@ class TestMyPetsPagePositive:
 
     # @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.title("Создание(генерация) карточек питомцев с параметризацией вериф-нных данных:\n"
+    @allure.story("Создание карточек питомцев (позитивные тесты).")
+    @allure.title("Создание(генерация) карточек питомцев с параметризацией верифицированных данных:\n"
                   "'photo', 'name', breed, 'age'.")
     @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-CPwPARAM-03-POS")
     @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @pytest.mark.create_pairwise
     @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
     @pytest.mark.parametrize("name", [russian_chars(), latin_chars()], ids=["cyrillic chars", "latin chars"])
-    @pytest.mark.parametrize("breed", [latin_chars(), russian_chars()], ids=["latin chars", "cyrillic chars"])
+    @pytest.mark.parametrize("breed", [russian_chars(), latin_chars()], ids=["cyrillic chars", "latin chars"])
     @pytest.mark.parametrize("age", [3, 0.9], ids=["integer num", "float num"])
     def test_create_pet_params_positive(self, driver, photo, name, breed, age):
         """Позитивный тест проверки создания карточек питомцев с верифицированными параметрами значений согласно
@@ -127,9 +129,9 @@ class TestMyPetsPagePositive:
                 print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Удаление карточек питомцев (позитивные тесты).")
+    @allure.story("Удаление карточки питомца (позитивные тесты).")
     @allure.title("Удаление карточки питомца из профиля пользователя")
-    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-DELP-05-POS")
+    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-DEL-05-POS")
     @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @pytest.mark.three
     @pytest.mark.delete_pet
@@ -167,9 +169,9 @@ class TestMyPetsPagePositive:
 
     # @pytest.mark.skip(reason="Тест полностью 'чистит' профиль от всех карточек, выполнять по необходимости!")
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story("Удаление карточек питомцев (позитивные тесты).")
+    @allure.story("Удаление карточки питомца (позитивные тесты).")
     @allure.title("Последовательное удаление всех карточек питомцев пользователя (очистка профиля)")
-    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-DELP-06-POS")
+    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-DEL-06-POS")
     @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @pytest.mark.four
     @pytest.mark.delete_all_pets
@@ -182,6 +184,7 @@ class TestMyPetsPagePositive:
 
         with allure.step("Шаг 1: Проверка количества карточек питомцев в профиле (если нет ни одной -> Exception)."):
             page = MyPetsPage(driver)
+            page.wait_page_loaded()
             cards_before_delete = page.get_pets_quantity(driver)
             pets_quantity = page.get_pets_quantity(driver)
             if pets_quantity == 0:
@@ -194,7 +197,6 @@ class TestMyPetsPagePositive:
             while pets_quantity != 0:
                 page.delete_pet_btn_click(driver)
                 page.refresh_page()
-                page.wait_page_loaded()
                 pets_quantity = page.get_pets_quantity(driver)
             cards_after_delete = page.get_pets_quantity(driver)
         with allure.step("Шаг 3: Assert-проверка количества карточек до/после удаления."):
