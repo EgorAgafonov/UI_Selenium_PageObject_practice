@@ -7,18 +7,20 @@ from colorama import Fore, Style
 from conftest import *
 
 
+@allure.epic("UI-PetFriends")
+@allure.feature("Функциональное тестирование UI (позитивные тесты)")
+@allure.story("Создание карточек питомцев (позитивные тесты).")
+@allure.label("Агафонов Е.А.", "владелец")
+@allure.label(LabelType.LANGUAGE, "Python")
+@allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
 class TestMyPetsPagePositive:
+
     @pytest.mark.one
     @pytest.mark.create_simple
-    @allure.title("Создание карточек питомцев (позитивные тесты).")
-    @allure.id("TC-CPS-01-POS")
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.label(LabelType.LANGUAGE, "Python")
-    @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
-    @allure.label("Агафонов Е.А.", "владелец")
+    @allure.title("Создание простой карточки питомца (без фото)")
+    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-CPS-01-POS")
     @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
-    @allure.epic("Пользовательский интерфейс")
-    @allure.feature("Создание простой карточки питомца (без фото)")
     def test_create_pet_simple_positive(self, driver):
         """Позитивный тест проверки создания карточки питомца без фото. Валидация теста выполнена успешно в случае,
         если после ввода всех необходимых данных в форму карточки, пользователь остается на страницы path = "/my_pets",
@@ -49,15 +51,10 @@ class TestMyPetsPagePositive:
 
     @pytest.mark.two
     @pytest.mark.create_wth_photo
-    @allure.title("Создание карточек питомцев (позитивные тесты).")
-    @allure.id("TC-CPwPH-02-POS")
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.label(LabelType.LANGUAGE, "Python")
-    @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
-    @allure.label("Агафонов Е.А.", "владелец")
+    @allure.title("Создание карточки питомца с фото")
+    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-CPwPH-02-POS")
     @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
-    @allure.epic("Пользовательский интерфейс")
-    @allure.feature("Создание карточки питомца с фото")
     def test_create_pet_wth_photo_positive(self, driver):
         """Позитивный тест проверки создания карточки питомца с фото. Валидация теста выполнена успешно в случае, если
          после ввода всех необходимых данных в форму карточки, пользователь остается на страницы с эндпоинтом
@@ -88,21 +85,16 @@ class TestMyPetsPagePositive:
                 print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
     # @pytest.mark.skip(reason="Тест генерирует 16 тест-кейсов, выполнять по необходимости!")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.title("Создание(генерация) карточек питомцев с параметризацией вериф-нных данных:\n"
+                  "'photo', 'name', breed, 'age'.")
+    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-CPwPARAM-03-POS")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @pytest.mark.create_pairwise
     @pytest.mark.parametrize("photo", [photo_1_jpg, photo_2_jpg], ids=["photo_jpeg_>100kb", "photo_jpeg_<100kb"])
     @pytest.mark.parametrize("name", [russian_chars(), latin_chars()], ids=["cyrillic chars", "latin chars"])
     @pytest.mark.parametrize("breed", [latin_chars(), russian_chars()], ids=["latin chars", "cyrillic chars"])
     @pytest.mark.parametrize("age", [3, 0.9], ids=["integer num", "float num"])
-    @allure.title("Создание карточек питомцев (позитивные тесты).")
-    @allure.id("TC-CPwPARAM-03-POS")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @allure.label(LabelType.LANGUAGE, "Python")
-    @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
-    @allure.label("Агафонов Е.А.", "владелец")
-    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
-    @allure.epic("Пользовательский интерфейс")
-    @allure.feature("Создание(генерация) карточек питомцев с параметризацией вериф-нных данных:\n"
-                    "'photo', 'name', breed, 'age'.")
     def test_create_pet_params_positive(self, driver, photo, name, breed, age):
         """Позитивный тест проверки создания карточек питомцев с верифицированными параметрами значений согласно
         спецификации. Реализована техника попарного тестирования Pairwise. Валидация каждого теста выполнена успешно в
@@ -134,17 +126,13 @@ class TestMyPetsPagePositive:
                               attachment_type=allure.attachment_type.PNG)
                 print(Style.DIM + Fore.GREEN + f"\nКарточка питомца успешно создана!")
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("Удаление карточек питомцев (позитивные тесты).")
+    @allure.title("Удаление карточки питомца из профиля пользователя")
+    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-DELP-05-POS")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @pytest.mark.three
     @pytest.mark.delete_pet
-    @allure.title("Удаление карточек питомцев (позитивные тесты).")
-    @allure.id("TC-DELP-05-POS")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @allure.label(LabelType.LANGUAGE, "Python")
-    @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
-    @allure.label("Агафонов Е.А.", "владелец")
-    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
-    @allure.epic("Пользовательский интерфейс")
-    @allure.feature("Удаление карточки питомца из профиля пользователя")
     def test_delete_pet_positive(self, driver):
         """Позитивный тест проверки удаления пользователем ранее созданной им карточки питомца. Валидация теста
         выполнена успешно в случае, если после нажатия на элемент "Удалить питомца" в карточке питомца, указанная
@@ -178,17 +166,13 @@ class TestMyPetsPagePositive:
                       f"{cards_after_delete}")
 
     # @pytest.mark.skip(reason="Тест полностью 'чистит' профиль от всех карточек, выполнять по необходимости!")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story("Удаление карточек питомцев (позитивные тесты).")
+    @allure.title("Последовательное удаление всех карточек питомцев пользователя (очистка профиля)")
+    @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-DELP-06-POS")
+    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
     @pytest.mark.four
     @pytest.mark.delete_all_pets
-    @allure.title("Удаление карточек питомцев (позитивные тесты).")
-    @allure.id("TC-DELP-06-POS")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @allure.label(LabelType.LANGUAGE, "Python")
-    @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
-    @allure.label("Агафонов Е.А.", "владелец")
-    @allure.link("https://petfriends.skillfactory.ru/my_pets", name="https://petfriends.skillfactory.ru/my_pets")
-    @allure.epic("Пользовательский интерфейс")
-    @allure.feature("Последовательное удаление всех карточек питомцев пользователя (очистка профиля)")
     def test_delete_all_pets_positive(self, driver):
         """Позитивный тест проверки удаления пользователем всех созданных им карточек питомцев. Валидация теста
         выполнена успешно в случае, если после последовательного воздействия на элемент "Удалить питомца" в каждой
