@@ -9,7 +9,6 @@ from allure_commons.types import LabelType
 
 @allure.epic("UI-PetFriends")
 @allure.feature("Функциональное тестирование UI (негативные тесты)")
-@allure.story("Авторизация на сайте (негативные тесты).")
 @allure.label("Агафонов Е.А.", "владелец")
 @allure.label(LabelType.LANGUAGE, "Python")
 @allure.label(LabelType.FRAMEWORK, "Pytest", "Selenium")
@@ -18,6 +17,7 @@ class TestsAuthPageNegative:
     petfriends.skillfactory.ru, спроектированных с использованием паттерна PageObjectModel."""
 
     @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story(" Авторизации пользователя на сайте (негативные тесты).")
     @allure.title("Проверка стандартной авторизации пользователя с недействительными значениями email и password")
     @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-AUTH-02-NEGAT")
     @allure.link("https://petfriends.skillfactory.ru/login", name="https://petfriends.skillfactory.ru/login")
@@ -28,11 +28,8 @@ class TestsAuthPageNegative:
         сервисное сообщение о некорректно указанных почте/пароле пользователя."""
 
         page = AuthPage(auth_driver)
-        page.wait_page_loaded()
         page.enter_email(invalid_email)
-        page.wait_page_loaded()
         page.enter_pass(invalid_password)
-        page.wait_page_loaded()
         page.btn_click()
         page.wait_page_loaded()
         allert_msg = page.check_allert_msg(auth_driver)
@@ -41,6 +38,7 @@ class TestsAuthPageNegative:
         assert page.get_relative_link() != "/all_pets"
 
     @allure.severity(allure.severity_level.CRITICAL)
+    @allure.story(" Авторизации пользователя на сайте (негативные тесты).")
     @allure.title("Параметризация стандартной авторизации пользователя с невалидными значениями email и password")
     @allure.testcase("https://petfriends.skillfactory.ru/my_pets", "TC-AUTH-03-NEGAT-PARAM")
     @allure.link("https://petfriends.skillfactory.ru/login", name="https://petfriends.skillfactory.ru/login")
@@ -55,9 +53,7 @@ class TestsAuthPageNegative:
         пользователю в авторизации на сайте, а перехода на страницу path = "/all_pets" не происходит."""
 
         page = AuthPage(auth_driver)
-        page.wait_page_loaded()
         page.enter_email(incorrect_email)
-        page.wait_page_loaded()
         page.enter_pass(incorrect_password)
         page.wait_page_loaded()
         page.btn_click()
